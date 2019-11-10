@@ -80,8 +80,10 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
     struct localizable {
+      /// Value: %@ residents
+      static let residents_navigation_title = Rswift.StringResource(key: "residents_navigation_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Birth year
       static let resident_birth_year_localization = Rswift.StringResource(key: "resident_birth_year_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Climate
@@ -128,6 +130,13 @@ struct R: Rswift.Validatable {
       static let home_surface_water_localization = Rswift.StringResource(key: "home_surface_water_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Terrain
       static let home_terrain_localization = Rswift.StringResource(key: "home_terrain_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Try again
+      static let error_try_again = Rswift.StringResource(key: "error_try_again", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: %@ residents
+      static func residents_navigation_title(_ value1: String) -> String {
+        return String(format: NSLocalizedString("residents_navigation_title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// Value: Birth year
       static func resident_birth_year_localization(_: Void = ()) -> String {
@@ -242,6 +251,11 @@ struct R: Rswift.Validatable {
       /// Value: Terrain
       static func home_terrain_localization(_: Void = ()) -> String {
         return NSLocalizedString("home_terrain_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Try again
+      static func error_try_again(_: Void = ()) -> String {
+        return NSLocalizedString("error_try_again", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

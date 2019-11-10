@@ -13,8 +13,7 @@ import Kingfisher
 final class HeaderView: UIView {
     var disposeBag = DisposeBag()
     var image = PublishSubject<String?>()
-    var open = PublishSubject<String?>()
-    var back = PublishSubject<Void>()
+    var actions = Actions()
     var backButtonVisible: Bool = false {
         didSet {
             self.backButton.isHidden = !backButtonVisible
@@ -28,7 +27,7 @@ final class HeaderView: UIView {
         btn.setImage(R.image.back(), for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.rx.tap.asDriver().drive(onNext: { [weak self] (_) in
-            self?.back.onNext(())
+            self?.actions.back.onNext(())
         }).disposed(by: disposeBag)
         return btn
     }()
@@ -115,6 +114,13 @@ final class HeaderView: UIView {
 
         let tap = UITapGestureRecognizer()
         imageView.addGestureRecognizer(tap)
-        tap.rx.event.map { _ in return self.currentUrl }.bind(to: open).disposed(by: disposeBag)
+        tap.rx.event.map { _ in return self.currentUrl }.bind(to: actions.open).disposed(by: disposeBag)
+    }
+}
+
+extension HeaderView {
+    struct Actions {
+        var open = PublishSubject<String?>()
+        var back = PublishSubject<Void>()
     }
 }
