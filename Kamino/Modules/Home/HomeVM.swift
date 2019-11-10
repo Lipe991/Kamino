@@ -23,6 +23,7 @@ enum CellType {
 
 final class HomeVM: ViewModel, ViewModelType {
     struct Input: InputType {
+        var retry = PublishSubject<Void>()
         var load = PublishSubject<Void>()
         var like = PublishSubject<Void>()
     }
@@ -30,7 +31,7 @@ final class HomeVM: ViewModel, ViewModelType {
     struct Output: OutputType {
         typealias Item = CellType
         var image: Driver<String?>
-        var name: Driver<String?>
+        var name: Driver<String>
         var items: Driver<[SectionModel<String, CellType>]>
     }
     var hasLiked: Bool = false
@@ -43,6 +44,7 @@ final class HomeVM: ViewModel, ViewModelType {
 
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
+        bindRetryLoad(input: input)
         bindLoadPlanet(input: input)
         bindLikePlanet(input: input)
         let sections = _planet.compactMap { pl -> [SectionModel<String, CellType>] in
@@ -53,12 +55,21 @@ final class HomeVM: ViewModel, ViewModelType {
         }.asDriver(onErrorJustReturn: [])
 
         let image = _planet.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
-        let name = _planet.map { $0?.name }.asDriver(onErrorJustReturn: nil)
+        let name = _planet.map { $0?.name ?? "" }.asDriver(onErrorJustReturn: "")
 
         return Output(image: image, name: name, items: sections)
     }
     
     // MARK: - Helpers
+    private func bindRetryLoad(input: Input) {
+        input.retry.bind(to: input.load).disposed(by: dispiseBag)
+        
+        input.retry.subscribe(onNext: { (_) in
+            input.load.onNext(())
+        }).disposed(by: dispiseBag)
+
+    }
+
     private func bindLoadPlanet(input: Input) {
         input.load.flatMapLatest { [weak self] _ -> Observable<Planet> in
             self?.isLoaded.accept(false)
@@ -66,9 +77,11 @@ final class HomeVM: ViewModel, ViewModelType {
         }.subscribe(onNext: { [weak self] (planet) in
             self?._planet.accept(planet)
             self?.isLoaded.accept(true)
+            self?.onError.onNext(.noError)
         }, onError: { [weak self] (error) in
             self?.onError.onNext(.error)
             self?.isLoaded.accept(true)
+            self?.bindLoadPlanet(input: input)
         }).disposed(by: dispiseBag)
     }
 

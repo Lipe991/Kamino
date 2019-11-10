@@ -20,7 +20,8 @@ protocol ViewControllerType {
 class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerType {
     var disposeBag = DisposeBag()
     var viewModel: VM
-
+    var actions = Actions()
+    
     private lazy var loadingView: LoadingView = {
         let v = LoadingView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +31,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
     private lazy var errorView: ErrorView = {
         let error = ErrorView()
         error.translatesAutoresizingMaskIntoConstraints = false
+        error.actions.tryAgain.bind(to: self.actions.retry).disposed(by: disposeBag)
         return error
     }()
     
@@ -73,7 +75,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         viewModel.onError.observeOn(MainScheduler.instance).subscribe({ [weak self] (err) in
             guard let self = self, let error = err.event.element else { return }
             self.handleError(error)
-        }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)        
     }
 
     override func viewDidLayoutSubviews() {
@@ -92,6 +94,8 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         case .likeError:
             let banner = NotificationBanner(title: "home_like_error_title".localized, subtitle: "home_like_error_text".localized, style: .danger)
             banner.show()
+        case .noError:
+            self.errorView.removeFromSuperview()
         }
     }
 
@@ -105,5 +109,11 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
     private func hideLoadingScreen() {
         loadingView.stop()
         loadingView.removeFromSuperview()
+    }
+}
+
+extension ViewController {
+    struct Actions {
+        var retry = PublishSubject<Void>()
     }
 }

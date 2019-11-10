@@ -13,12 +13,13 @@ import RxCocoa
 
 final class ResidentVM: ViewModel, ViewModelType {
     struct Input: InputType {
+        var retry = PublishSubject<Void>()
         var load = PublishSubject<Resident>()
     }
     
     struct Output: OutputType {
         var image: Driver<String?>
-        var name: Driver<String?>
+        var name: Driver<String>
         var items: Driver<[SectionModel<String, CellType>]>
     }
     
@@ -45,10 +46,10 @@ final class ResidentVM: ViewModel, ViewModelType {
         }
         
         let image = input.load.map { $0.imageUrl }
-        let name = input.load.map { $0.name }
+        let name = input.load.map { $0.name ?? "" }
         
         input.load.map { _ in return true }.bind(to: isLoaded).disposed(by: dispiseBag)
         
-        return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: nil), items: sections.asDriver(onErrorJustReturn: []))
+        return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: ""), items: sections.asDriver(onErrorJustReturn: []))
     }
 }

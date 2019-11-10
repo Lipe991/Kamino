@@ -13,6 +13,7 @@ import RxDataSources
 enum ErrorType: Error {
     case error
     case likeError
+    case noError
 }
 
 protocol ViewModelProtocol {
@@ -22,12 +23,13 @@ protocol ViewModelProtocol {
 }
 
 protocol InputType {
+    var retry: PublishSubject<Void> { get set }
     init()
 }
 
 protocol OutputType {
     associatedtype Item
-    var name: Driver<String?> { get set }
+    var name: Driver<String> { get set }
     var image: Driver<String?> { get set }
     var items: Driver<[SectionModel<String, Item>]> { get set }
 }
