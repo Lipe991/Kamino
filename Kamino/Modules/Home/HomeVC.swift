@@ -13,7 +13,8 @@ import RxDataSources
 final class HomeVC: ViewController<HomeVM> {
     
     private var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>!
-    
+    private let input = HomeVM.Input()
+
     private lazy var header: HomeHeaderView = {
         let header = HomeHeaderView()
         header.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +70,6 @@ final class HomeVC: ViewController<HomeVM> {
         collectionConstraints.activate()
         headerConstraints.activate()
         
-        let input = HomeVM.Input()
         dataSource = createDataSource()
         let output = self.viewModel.transform(input: input)
         output.items.drive(collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
@@ -80,11 +80,15 @@ final class HomeVC: ViewController<HomeVM> {
         
         collection.rx.modelSelected(CellType.self).subscribe(onNext: { [weak self] (type) in
             switch type {
-            case .interactive(let value):
-                print("click")
+            case .interactive(let value, let type):
                 guard let self = self, let planet = self.viewModel.planet else { return }
-                let vc = ResidentsVC(planet: planet)
-                self.navigationController?.pushViewController(vc, animated: true)
+                switch type {
+                case .open:
+                    let vc = ResidentsVC(planet: planet)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case .like:
+                    self.input.like.onNext(())
+                }
             default:
                 return
             }
@@ -102,9 +106,15 @@ extension HomeVC {
         let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { dataSource, collection, indexPath, item in
             
             switch item {
-            case .interactive(let value):
+            case .interactive(let value, let type):
                 if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InteractiveCell", for: indexPath) as? InteractiveCell {
                     cell.populate(value: value)
+                    switch type {
+                    case .like:
+                        self.viewModel.hasLiked ? cell.disable() : cell.enable()
+                    default:
+                        cell.enable()
+                    }
                     return cell
                 }
             case .normal(let value, let title):

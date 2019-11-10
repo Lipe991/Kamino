@@ -43,8 +43,8 @@ extension Planet: Codable {
 extension Planet {
     var data: [CellType] {
         return [
-            .interactive(value: String(format: "home_residents_count".localized, residents?.count ?? 0)),
-            .interactive(value: String(format: "home_like_count".localized, likes ?? 0)),
+            .interactive(value: String(format: "home_residents_count".localized, residents?.count ?? 0), type: .open),
+            .interactive(value: String(format: "home_like_count".localized, likes ?? 0), type: .like),
             .normal(value: rotationPeriod, title: "home_rotation_period_localization".localized),
             .normal(value: orbitalPeriod, title: "home_orbital_period_localization".localized),
             .normal(value: diameter, title: "home_diameter_localization".localized),
