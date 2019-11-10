@@ -39,6 +39,8 @@
 		419357BA2378253500FC3D48 /* ResidentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357B92378253500FC3D48 /* ResidentsVM.swift */; };
 		419357BC2378279C00FC3D48 /* ResidentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357BB2378279C00FC3D48 /* ResidentsRepository.swift */; };
 		419357BE237838DC00FC3D48 /* ResidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357BD237838DC00FC3D48 /* ResidentCell.swift */; };
+		419357C12378412700FC3D48 /* ResidentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C02378412700FC3D48 /* ResidentVC.swift */; };
+		419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C22378412F00FC3D48 /* ResidentVM.swift */; };
 		5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */; };
 		7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,8 @@
 		419357B92378253500FC3D48 /* ResidentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsVM.swift; sourceTree = "<group>"; };
 		419357BB2378279C00FC3D48 /* ResidentsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsRepository.swift; sourceTree = "<group>"; };
 		419357BD237838DC00FC3D48 /* ResidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentCell.swift; sourceTree = "<group>"; };
+		419357C02378412700FC3D48 /* ResidentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVC.swift; sourceTree = "<group>"; };
+		419357C22378412F00FC3D48 /* ResidentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVM.swift; sourceTree = "<group>"; };
 		4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KaminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.release.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kamino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,7 @@
 		4193575B2377F8E900FC3D48 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				419357BF237840FB00FC3D48 /* ResidentVC */,
 				419357B62378245A00FC3D48 /* Residents */,
 				419357B5237822A800FC3D48 /* Home */,
 			);
@@ -264,6 +269,15 @@
 				419357BD237838DC00FC3D48 /* ResidentCell.swift */,
 			);
 			path = Residents;
+			sourceTree = "<group>";
+		};
+		419357BF237840FB00FC3D48 /* ResidentVC */ = {
+			isa = PBXGroup;
+			children = (
+				419357C02378412700FC3D48 /* ResidentVC.swift */,
+				419357C22378412F00FC3D48 /* ResidentVM.swift */,
+			);
+			path = ResidentVC;
 			sourceTree = "<group>";
 		};
 		A48B10EDC3C4A0693975C385 /* Pods */ = {
@@ -501,12 +515,14 @@
 				419357722377FCC600FC3D48 /* ActivityIndicator.swift in Sources */,
 				419357792377FD6B00FC3D48 /* Like.swift in Sources */,
 				419357B82378249E00FC3D48 /* ResidentsVC.swift in Sources */,
+				419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */,
 				419357392377F62500FC3D48 /* AppDelegate.swift in Sources */,
 				41935793237804D100FC3D48 /* InfoCell.swift in Sources */,
 				419357BA2378253500FC3D48 /* ResidentsVM.swift in Sources */,
 				419357772377FD5F00FC3D48 /* Resident.swift in Sources */,
 				419357A123780B8000FC3D48 /* String+Extra.swift in Sources */,
 				4193578D2378012B00FC3D48 /* NSLayoutConstraint+Extra.swift in Sources */,
+				419357C12378412700FC3D48 /* ResidentVC.swift in Sources */,
 				419357752377FD5800FC3D48 /* Planet.swift in Sources */,
 				419357B22378167500FC3D48 /* R.generated.swift in Sources */,
 				419357BC2378279C00FC3D48 /* ResidentsRepository.swift in Sources */,

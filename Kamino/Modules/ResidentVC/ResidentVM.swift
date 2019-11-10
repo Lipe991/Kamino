@@ -1,5 +1,5 @@
 //
-//  ResidentsVM.swift
+//  ResidentVM.swift
 //  Kamino
 //
 //  Created by Sandi Mihelic on 10/11/2019.
@@ -11,15 +11,15 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
-final class ResidentsVM: ViewModel {
+final class ResidentVM: ViewModel {
     struct Input {
-        var load = PublishSubject<Planet>()
+        var load = PublishSubject<Resident>()
     }
     
     struct Output {
         var image: Driver<String?>
         var name: Driver<String?>
-        var items: Driver<[SectionModel<String, Resident>]>
+        var items: Driver<[SectionModel<String, CellType>]>
     }
     
     private let repo = ResidentsRepository()
@@ -27,13 +27,9 @@ final class ResidentsVM: ViewModel {
     
     func transform(input: Input) -> Output {
         
-        let residents = input.load.flatMap { [weak self] planet in
-            return self?.repo.loadResidents(from: planet.residents ?? []) ?? Observable.empty()
-        }.trackActivity(isLoaded)
-        
-        let sections = residents.map { residents in
+        let sections = input.load.map { resident in
             return [
-                SectionModel(model: "Residents", items: residents)
+                SectionModel(model: "Info", items: resident.data)
             ]
         }
         

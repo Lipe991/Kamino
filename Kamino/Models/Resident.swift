@@ -34,3 +34,18 @@ extension Resident: Codable {
         case imageUrl = "image_url"
     }
 }
+
+extension Resident {
+    var data: [CellType] {
+        return [
+            .normal(value: name, title: "resident_name_localization".localized),
+            .normal(value: height, title: "resident_height_localization".localized),
+            .normal(value: mass, title: "resident_mass_localization".localized),
+            .normal(value: hairColor, title: "resident_hair_color_localization".localized),
+            .normal(value: skinColor, title: "resident_skin_color_localization".localized),
+            .normal(value: eyeColor, title: "resident_eye_color_localization".localized),
+            .normal(value: birthYear, title: "resident_birth_year_localization".localized),
+            .normal(value: gender, title: "resident_gender_localization".localized)
+        ]
+    }
+}

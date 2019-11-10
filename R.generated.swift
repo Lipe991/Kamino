@@ -59,16 +59,32 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
     struct localizable {
+      /// Value: Birth year
+      static let resident_birth_year_localization = Rswift.StringResource(key: "resident_birth_year_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Climate
       static let home_climate_localization = Rswift.StringResource(key: "home_climate_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Diameter
       static let home_diameter_localization = Rswift.StringResource(key: "home_diameter_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Eye color
+      static let resident_eye_color_localization = Rswift.StringResource(key: "resident_eye_color_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Gender
+      static let resident_gender_localization = Rswift.StringResource(key: "resident_gender_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Gravity
       static let home_gravity_localization = Rswift.StringResource(key: "home_gravity_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Hair color
+      static let resident_hair_color_localization = Rswift.StringResource(key: "resident_hair_color_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Height
+      static let resident_height_localization = Rswift.StringResource(key: "resident_height_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Homeworld
+      static let home_homeworld_localization = Rswift.StringResource(key: "home_homeworld_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Likes: %d
       static let home_like_count = Rswift.StringResource(key: "home_like_count", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Mass
+      static let resident_mass_localization = Rswift.StringResource(key: "resident_mass_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Name
+      static let resident_name_localization = Rswift.StringResource(key: "resident_name_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Orbital period
       static let home_orbital_period_localization = Rswift.StringResource(key: "home_orbital_period_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Population
@@ -77,10 +93,17 @@ struct R: Rswift.Validatable {
       static let home_residents_count = Rswift.StringResource(key: "home_residents_count", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Rotation period
       static let home_rotation_period_localization = Rswift.StringResource(key: "home_rotation_period_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Skin color
+      static let resident_skin_color_localization = Rswift.StringResource(key: "resident_skin_color_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Surface water
       static let home_surface_water_localization = Rswift.StringResource(key: "home_surface_water_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Terrain
       static let home_terrain_localization = Rswift.StringResource(key: "home_terrain_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: Birth year
+      static func resident_birth_year_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_birth_year_localization", bundle: R.hostingBundle, comment: "")
+      }
       
       /// Value: Climate
       static func home_climate_localization(_: Void = ()) -> String {
@@ -92,14 +115,49 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("home_diameter_localization", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Eye color
+      static func resident_eye_color_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_eye_color_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Gender
+      static func resident_gender_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_gender_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Gravity
       static func home_gravity_localization(_: Void = ()) -> String {
         return NSLocalizedString("home_gravity_localization", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Hair color
+      static func resident_hair_color_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_hair_color_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Height
+      static func resident_height_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_height_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Homeworld
+      static func home_homeworld_localization(_: Void = ()) -> String {
+        return NSLocalizedString("home_homeworld_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Likes: %d
       static func home_like_count(_ value1: Int) -> String {
         return String(format: NSLocalizedString("home_like_count", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: Mass
+      static func resident_mass_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_mass_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Name
+      static func resident_name_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_name_localization", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Orbital period
@@ -120,6 +178,11 @@ struct R: Rswift.Validatable {
       /// Value: Rotation period
       static func home_rotation_period_localization(_: Void = ()) -> String {
         return NSLocalizedString("home_rotation_period_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Skin color
+      static func resident_skin_color_localization(_: Void = ()) -> String {
+        return NSLocalizedString("resident_skin_color_localization", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Surface water
