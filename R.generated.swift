@@ -80,7 +80,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
       /// Value: Birth year
       static let resident_birth_year_localization = Rswift.StringResource(key: "resident_birth_year_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -102,6 +102,8 @@ struct R: Rswift.Validatable {
       static let home_homeworld_localization = Rswift.StringResource(key: "home_homeworld_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Image can not be shown
       static let image_error = Rswift.StringResource(key: "image_error", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Like failed
+      static let home_like_error_title = Rswift.StringResource(key: "home_like_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Likes: %d
       static let home_like_count = Rswift.StringResource(key: "home_like_count", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Mass
@@ -110,6 +112,8 @@ struct R: Rswift.Validatable {
       static let resident_name_localization = Rswift.StringResource(key: "resident_name_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Orbital period
       static let home_orbital_period_localization = Rswift.StringResource(key: "home_orbital_period_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Please try again in a few moments!
+      static let home_like_error_text = Rswift.StringResource(key: "home_like_error_text", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Population
       static let home_population_localization = Rswift.StringResource(key: "home_population_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Residents: %d
@@ -175,6 +179,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("image_error", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Like failed
+      static func home_like_error_title(_: Void = ()) -> String {
+        return NSLocalizedString("home_like_error_title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Likes: %d
       static func home_like_count(_ value1: Int) -> String {
         return String(format: NSLocalizedString("home_like_count", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
@@ -193,6 +202,11 @@ struct R: Rswift.Validatable {
       /// Value: Orbital period
       static func home_orbital_period_localization(_: Void = ()) -> String {
         return NSLocalizedString("home_orbital_period_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Please try again in a few moments!
+      static func home_like_error_text(_: Void = ()) -> String {
+        return NSLocalizedString("home_like_error_text", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Population

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import NotificationBannerSwift
 
 protocol ViewControllerType {
     associatedtype VM: ViewModelProtocol
@@ -31,7 +32,26 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         error.translatesAutoresizingMaskIntoConstraints = false
         return error
     }()
+    
+    // MARK: - Constraints
+    private var erroViewConstraints: [NSLayoutConstraint] {
+        return [
+            errorView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            errorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 175),
+            errorView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+    }
 
+    private var loadingViewConstraints: [NSLayoutConstraint] {
+        return [
+            loadingView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+    }
+    
     // MARK: - Init
     required init(with vm: VM = VM()) {
         viewModel = vm
@@ -67,24 +87,17 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         case .error:
             self.hideLoadingScreen()
             view.addSubview(errorView)
-            [
-                errorView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                errorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 175),
-                errorView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ].activate()
+            erroViewConstraints.activate()
             view.bringSubviewToFront(errorView)
+        case .likeError:
+            let banner = NotificationBanner(title: "home_like_error_title".localized, subtitle: "home_like_error_text".localized, style: .danger)
+            banner.show()
         }
     }
 
     private func showLoadingScreen() {
         view.addSubview(loadingView)
-        [
-            loadingView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
-            loadingView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ].activate()
+        loadingViewConstraints.activate()
         view.bringSubviewToFront(loadingView)
         loadingView.start()
     }

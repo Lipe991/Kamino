@@ -12,6 +12,7 @@ import RxDataSources
 
 enum ErrorType: Error {
     case error
+    case likeError
 }
 
 protocol ViewModelProtocol {
