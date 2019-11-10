@@ -80,7 +80,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
     struct localizable {
       /// Value: Birth year
       static let resident_birth_year_localization = Rswift.StringResource(key: "resident_birth_year_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -100,6 +100,8 @@ struct R: Rswift.Validatable {
       static let resident_height_localization = Rswift.StringResource(key: "resident_height_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Homeworld
       static let home_homeworld_localization = Rswift.StringResource(key: "home_homeworld_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Image can not be shown
+      static let image_error = Rswift.StringResource(key: "image_error", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Likes: %d
       static let home_like_count = Rswift.StringResource(key: "home_like_count", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Mass
@@ -166,6 +168,11 @@ struct R: Rswift.Validatable {
       /// Value: Homeworld
       static func home_homeworld_localization(_: Void = ()) -> String {
         return NSLocalizedString("home_homeworld_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Image can not be shown
+      static func image_error(_: Void = ()) -> String {
+        return NSLocalizedString("image_error", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Likes: %d

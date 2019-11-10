@@ -27,6 +27,24 @@ final class ImageViewVC: UIViewController {
         return btn
     }()
     
+    private lazy var errorLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.textAlignment = .center
+        lbl.text = "image_error".localized
+        lbl.textColor = .white
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    private var errorConstraints: [NSLayoutConstraint] {
+        return [
+            errorLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
+            errorLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+    }
+
     private var imageConstraints: [NSLayoutConstraint] {
         return [
             imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -71,7 +89,23 @@ final class ImageViewVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let url = URL(string: url ?? "") {
-            imageView.kf.setImage(with: url)
+            imageView.kf.setImage(with: url, completionHandler: { [weak self] result in
+                switch result {
+                case .failure:
+                    self?.showErrorLabel()
+                case .success:
+                    self?.hideErrorLabel()
+                }
+            })
         }
+    }
+    
+    private func showErrorLabel() {
+        view.addSubview(errorLabel)
+        errorConstraints.activate()
+    }
+    
+    private func hideErrorLabel() {
+        errorLabel.removeFromSuperview()
     }
 }
