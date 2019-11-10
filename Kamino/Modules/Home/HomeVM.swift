@@ -16,7 +16,7 @@ enum CellType {
 }
 
 final class HomeVM: ViewModel {
-    
+    var planet: Planet?
     struct Input {
         var load = PublishSubject<String>()
     }
@@ -44,6 +44,10 @@ final class HomeVM: ViewModel {
         
         let image = planet.map { $0.imageUrl }
         let name = planet.map { $0.name }
+        
+        planet.subscribe(onNext: { [weak self] (planet) in
+            self?.planet = planet
+        }).disposed(by: self.dispiseBag)
         
         return Output(image: image, name: name, items: sections)
     }
