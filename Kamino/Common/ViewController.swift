@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import NotificationBannerSwift
 
 protocol ViewControllerType {
     associatedtype VM: ViewModelProtocol
@@ -88,6 +89,9 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
             view.addSubview(errorView)
             erroViewConstraints.activate()
             view.bringSubviewToFront(errorView)
+        case .likeError:
+            let banner = NotificationBanner(title: "home_like_error_title".localized, subtitle: "home_like_error_text".localized, style: .danger)
+            banner.show()
         }
     }
 

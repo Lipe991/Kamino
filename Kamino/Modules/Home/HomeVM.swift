@@ -81,6 +81,8 @@ final class HomeVM: ViewModel, ViewModelType {
             planet.likes = like.likes! + 1
             self._planet.accept(planet)
             self.hasLiked = true
-            }).disposed(by: dispiseBag)
+            }, onError: { [weak self] _ in
+                self?.onError.onNext(ErrorType.likeError)
+        }).disposed(by: dispiseBag)
     }
 }

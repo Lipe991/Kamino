@@ -26,3 +26,5 @@
 "home_homeworld_localization"="Homeworld";
 "error_text"="Something went wrong...";
 "image_error"="Image can not be shown";
+"home_like_error_title"="Like failed";
+"home_like_error_text"="Please try again in a few moments!";
