@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		419357422377F62500FC3D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419357412377F62500FC3D48 /* Assets.xcassets */; };
 		419357452377F62500FC3D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419357432377F62500FC3D48 /* LaunchScreen.storyboard */; };
 		419357502377F62600FC3D48 /* KaminoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193574F2377F62600FC3D48 /* KaminoTests.swift */; };
+		4193575D2377F8FA00FC3D48 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193575C2377F8FA00FC3D48 /* HomeVC.swift */; };
+		5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */; };
+		7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DB215EC6AF0007EFEF6F650 /* Pods-Kamino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.debug.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.debug.xcconfig"; sourceTree = "<group>"; };
+		215497C1B64C920E7369D799 /* Pods-Kamino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.release.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.release.xcconfig"; sourceTree = "<group>"; };
 		419357352377F62400FC3D48 /* Kamino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kamino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		419357382377F62500FC3D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		419357412377F62500FC3D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,6 +37,11 @@
 		4193574B2377F62600FC3D48 /* KaminoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaminoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4193574F2377F62600FC3D48 /* KaminoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaminoTests.swift; sourceTree = "<group>"; };
 		419357512377F62600FC3D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4193575C2377F8FA00FC3D48 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KaminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.release.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kamino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91C4950388BF6760EEB7922 /* Pods-KaminoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.debug.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +70,8 @@
 				419357372377F62500FC3D48 /* Kamino */,
 				4193574E2377F62600FC3D48 /* KaminoTests */,
 				419357362377F62400FC3D48 /* Products */,
+				A48B10EDC3C4A0693975C385 /* Pods */,
+				D9A94D0E4BB634BC81E2CB5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +87,7 @@
 		419357372377F62500FC3D48 /* Kamino */ = {
 			isa = PBXGroup;
 			children = (
+				4193575B2377F8E900FC3D48 /* Modules */,
 				4193575A2377F67C00FC3D48 /* Application */,
 			);
 			path = Kamino;
@@ -98,6 +113,34 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		4193575B2377F8E900FC3D48 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4193575C2377F8FA00FC3D48 /* HomeVC.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A48B10EDC3C4A0693975C385 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0DB215EC6AF0007EFEF6F650 /* Pods-Kamino.debug.xcconfig */,
+				215497C1B64C920E7369D799 /* Pods-Kamino.release.xcconfig */,
+				E91C4950388BF6760EEB7922 /* Pods-KaminoTests.debug.xcconfig */,
+				C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D9A94D0E4BB634BC81E2CB5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */,
+				4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,9 +148,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 419357542377F62600FC3D48 /* Build configuration list for PBXNativeTarget "Kamino" */;
 			buildPhases = (
+				58835D7A18CFAF4F8B5FAE29 /* [CP] Check Pods Manifest.lock */,
 				419357312377F62400FC3D48 /* Sources */,
 				419357322377F62400FC3D48 /* Frameworks */,
 				419357332377F62400FC3D48 /* Resources */,
+				C470091621D6FED0E6F67F82 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 419357572377F62600FC3D48 /* Build configuration list for PBXNativeTarget "KaminoTests" */;
 			buildPhases = (
+				C39639AFA2D14B64FE6F4A8F /* [CP] Check Pods Manifest.lock */,
 				419357472377F62600FC3D48 /* Sources */,
 				419357482377F62600FC3D48 /* Frameworks */,
 				419357492377F62600FC3D48 /* Resources */,
+				30B42C546BDECE3F277B270A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,12 +240,94 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		30B42C546BDECE3F277B270A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KaminoTests/Pods-KaminoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KaminoTests/Pods-KaminoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KaminoTests/Pods-KaminoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58835D7A18CFAF4F8B5FAE29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kamino-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C39639AFA2D14B64FE6F4A8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KaminoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C470091621D6FED0E6F67F82 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kamino/Pods-Kamino-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kamino/Pods-Kamino-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kamino/Pods-Kamino-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		419357312377F62400FC3D48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				419357392377F62500FC3D48 /* AppDelegate.swift in Sources */,
+				4193575D2377F8FA00FC3D48 /* HomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +477,7 @@
 		};
 		419357552377F62600FC3D48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DB215EC6AF0007EFEF6F650 /* Pods-Kamino.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -366,6 +496,7 @@
 		};
 		419357562377F62600FC3D48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 215497C1B64C920E7369D799 /* Pods-Kamino.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -384,6 +515,7 @@
 		};
 		419357582377F62600FC3D48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E91C4950388BF6760EEB7922 /* Pods-KaminoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -406,6 +538,7 @@
 		};
 		419357592377F62600FC3D48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
