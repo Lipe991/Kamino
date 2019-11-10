@@ -15,3 +15,12 @@
 "home_terrain_localization"="Terrain";
 "home_surface_water_localization"="Surface water";
 "home_population_localization"="Population";
+"resident_name_localization"="Name";
+"resident_height_localization"="Height";
+"resident_mass_localization"="Mass";
+"resident_hair_color_localization"="Hair color";
+"resident_skin_color_localization"="Skin color";
+"resident_eye_color_localization"="Eye color";
+"resident_birth_year_localization"="Birth year";
+"resident_gender_localization"="Gender";
+"home_homeworld_localization"="Homeworld";
