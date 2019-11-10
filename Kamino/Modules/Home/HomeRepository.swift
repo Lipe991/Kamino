@@ -18,6 +18,7 @@ final class HomeRepository {
                         let jsonData = json.data(using: .utf8)!
                         let planet = try JSONDecoder().decode(Planet.self, from: jsonData)
                         observer.onNext(planet)
+                        observer.onCompleted()
                     } catch let error {
                         observer.onError(ErrorType.error)
                         print("Error: \(error.localizedDescription)")
@@ -36,6 +37,7 @@ final class HomeRepository {
                         let jsonData = json.data(using: .utf8)!
                         let like = try JSONDecoder().decode(Like.self, from: jsonData)
                         observer.onNext(like)
+                        observer.onCompleted()
                     } catch let error {
                         observer.onError(ErrorType.error)
                         print("Error: \(error.localizedDescription)")

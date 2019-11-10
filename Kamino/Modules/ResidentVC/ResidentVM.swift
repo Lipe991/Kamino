@@ -40,7 +40,7 @@ final class ResidentVM: ViewModel, ViewModelType {
         
         let sections = input.load.map { resident in
             return [
-                SectionModel(model: "Info", items: resident.data)
+                SectionModel(model: "", items: resident.data)
             ]
         }
         

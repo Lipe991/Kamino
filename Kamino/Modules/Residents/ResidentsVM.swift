@@ -41,7 +41,7 @@ final class ResidentsVM: ViewModel, ViewModelType {
         bindLoadResident(with: input)
         let sections = _residents.map { residents in
             return [
-                SectionModel(model: "Residents", items: residents)
+                SectionModel(model: "", items: residents)
             ]
         }
         

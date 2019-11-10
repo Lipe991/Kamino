@@ -22,7 +22,6 @@ enum CellType {
 }
 
 final class HomeVM: ViewModel, ViewModelType {
-    var planet: Planet?
     struct Input: InputType {
         var load = PublishSubject<String>()
         var like = PublishSubject<Void>()
@@ -34,10 +33,13 @@ final class HomeVM: ViewModel, ViewModelType {
         var name: Driver<String?>
         var items: Driver<[SectionModel<String, CellType>]>
     }
+    var hasLiked: Bool = false
+    var planet: Planet? {
+        return _planet.value
+    }
 
     private let repo = HomeRepository()
-    private let _planet = BehaviorSubject<Planet?>(value: nil)
-    var hasLiked: Bool = false
+    private let _planet = BehaviorRelay<Planet?>(value: nil)
 
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
@@ -46,17 +48,12 @@ final class HomeVM: ViewModel, ViewModelType {
         let sections = _planet.compactMap { pl -> [SectionModel<String, CellType>] in
             guard let planet = pl else { return [] }
             return [
-                SectionModel(model: "Info", items: planet.data)
+                SectionModel(model: "", items: planet.data)
             ]
         }.asDriver(onErrorJustReturn: [])
 
         let image = _planet.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
         let name = _planet.map { $0?.name }.asDriver(onErrorJustReturn: nil)
-
-        _planet.subscribe(onNext: { [weak self] (planet) in
-            self?.planet = planet
-            self?.isLoaded.accept(true)
-        }).disposed(by: self.dispiseBag)
 
         return Output(image: image, name: name, items: sections)
     }
@@ -66,17 +63,23 @@ final class HomeVM: ViewModel, ViewModelType {
         input.load.flatMapLatest { [weak self] _ -> Observable<Planet> in
             self?.isLoaded.accept(false)
             return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
-        }.bind(to: _planet).disposed(by: dispiseBag)
+        }.subscribe(onNext: { [weak self] (planet) in
+            self?._planet.accept(planet)
+            self?.isLoaded.accept(true)
+        }, onError: { [weak self] (error) in
+            self?.onError.onNext(.error)
+            self?.isLoaded.accept(true)
+        }).disposed(by: dispiseBag)
     }
 
     private func bindLikePlanet(input: Input) {
         input.like.filter { !self.hasLiked }.flatMapLatest { [weak self] _ -> Observable<Like> in
             return self?.repo.likePlanet(id: 10) ?? Observable.empty()
         }.subscribe(onNext: { [weak self] (like) in
-            guard let self = self, var planet = try? self._planet.value() else { return }
+            guard let self = self, var planet = self._planet.value else { return }
             // +1 so the value gets updated, since the server is returning value 10
             planet.likes = like.likes! + 1
-            self._planet.onNext(planet)
+            self._planet.accept(planet)
             self.hasLiked = true
             }, onError: { [weak self] _ in
                 self?.onError.onNext(ErrorType.error)
