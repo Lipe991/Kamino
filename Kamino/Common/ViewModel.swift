@@ -10,18 +10,18 @@ import RxSwift
 import RxCocoa
 
 enum ErrorType: Error {
-    case empty
     case error
 }
 
 protocol ViewModelProtocol {
     var isLoaded: ActivityIndicator { get set }
+    var onError: PublishSubject<ErrorType> { get set }
     init()
 }
 
 class ViewModel: ViewModelProtocol {    
     var isLoaded = ActivityIndicator()
     var dispiseBag = DisposeBag()
-    
+    var onError = PublishSubject<ErrorType>()
     required init() {}
 }

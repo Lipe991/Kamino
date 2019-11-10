@@ -24,3 +24,4 @@
 "resident_birth_year_localization"="Birth year";
 "resident_gender_localization"="Gender";
 "home_homeworld_localization"="Homeworld";
+"error_text"="Something went wrong...";

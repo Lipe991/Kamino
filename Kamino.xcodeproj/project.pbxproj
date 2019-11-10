@@ -42,6 +42,7 @@
 		419357C12378412700FC3D48 /* ResidentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C02378412700FC3D48 /* ResidentVC.swift */; };
 		419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C22378412F00FC3D48 /* ResidentVM.swift */; };
 		419357C8237847FC00FC3D48 /* ImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C7237847FC00FC3D48 /* ImageViewVC.swift */; };
+		419357CA2378505300FC3D48 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C92378505300FC3D48 /* ErrorView.swift */; };
 		5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */; };
 		7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		419357C02378412700FC3D48 /* ResidentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVC.swift; sourceTree = "<group>"; };
 		419357C22378412F00FC3D48 /* ResidentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVM.swift; sourceTree = "<group>"; };
 		419357C7237847FC00FC3D48 /* ImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewVC.swift; sourceTree = "<group>"; };
+		419357C92378505300FC3D48 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KaminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.release.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kamino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +201,7 @@
 				4193576D2377FC8400FC3D48 /* ViewController.swift */,
 				4193576F2377FC8C00FC3D48 /* ViewModel.swift */,
 				419357712377FCC600FC3D48 /* ActivityIndicator.swift */,
+				419357C92378505300FC3D48 /* ErrorView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				419357792377FD6B00FC3D48 /* Like.swift in Sources */,
 				419357B82378249E00FC3D48 /* ResidentsVC.swift in Sources */,
 				419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */,
+				419357CA2378505300FC3D48 /* ErrorView.swift in Sources */,
 				419357392377F62500FC3D48 /* AppDelegate.swift in Sources */,
 				41935793237804D100FC3D48 /* InfoCell.swift in Sources */,
 				419357BA2378253500FC3D48 /* ResidentsVM.swift in Sources */,

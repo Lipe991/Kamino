@@ -31,16 +31,23 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `close-ico`.
     static let closeIco = Rswift.ImageResource(bundle: R.hostingBundle, name: "close-ico")
+    /// Image `error`.
+    static let error = Rswift.ImageResource(bundle: R.hostingBundle, name: "error")
     /// Image `user-avatar`.
     static let userAvatar = Rswift.ImageResource(bundle: R.hostingBundle, name: "user-avatar")
     
     /// `UIImage(named: "close-ico", bundle: ..., traitCollection: ...)`
     static func closeIco(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.closeIco, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "error", bundle: ..., traitCollection: ...)`
+    static func error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.error, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "user-avatar", bundle: ..., traitCollection: ...)`
@@ -66,7 +73,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
     struct localizable {
       /// Value: Birth year
       static let resident_birth_year_localization = Rswift.StringResource(key: "resident_birth_year_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -102,6 +109,8 @@ struct R: Rswift.Validatable {
       static let home_rotation_period_localization = Rswift.StringResource(key: "home_rotation_period_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Skin color
       static let resident_skin_color_localization = Rswift.StringResource(key: "resident_skin_color_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Something went wrong...
+      static let error_text = Rswift.StringResource(key: "error_text", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Surface water
       static let home_surface_water_localization = Rswift.StringResource(key: "home_surface_water_localization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Terrain
@@ -190,6 +199,11 @@ struct R: Rswift.Validatable {
       /// Value: Skin color
       static func resident_skin_color_localization(_: Void = ()) -> String {
         return NSLocalizedString("resident_skin_color_localization", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Something went wrong...
+      static func error_text(_: Void = ()) -> String {
+        return NSLocalizedString("error_text", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Surface water
