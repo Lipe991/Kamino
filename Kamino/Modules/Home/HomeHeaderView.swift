@@ -14,13 +14,15 @@ final class HomeHeaderView: UIView {
     
     var disposeBag = DisposeBag()
     var image = PublishSubject<String?>()
-    
+    var open = PublishSubject<String?>()
+    private var currentUrl = ""
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.borderColor = UIColor.white.cgColor
         image.image = R.image.userAvatar()
         image.layer.borderWidth = 2
+        image.isUserInteractionEnabled = true
         return image
     }()
     
@@ -68,9 +70,15 @@ final class HomeHeaderView: UIView {
     
     private func bind() {
         image.subscribe(onNext: { [weak self] (url) in
+            self?.currentUrl = url ?? ""
             guard let self = self, let url = URL(string: url ?? "") else { return }
             self.imageView.kf.setImage(with: url, placeholder: R.image.userAvatar())
         }).disposed(by: disposeBag)
+        
+        let tap = UITapGestureRecognizer()
+        imageView.addGestureRecognizer(tap)
+        
+        tap.rx.event.map { _ in return self.currentUrl }.bind(to: open).disposed(by: disposeBag)
     }
     
     override func layoutSubviews() {

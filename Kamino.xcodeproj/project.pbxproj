@@ -41,6 +41,7 @@
 		419357BE237838DC00FC3D48 /* ResidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357BD237838DC00FC3D48 /* ResidentCell.swift */; };
 		419357C12378412700FC3D48 /* ResidentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C02378412700FC3D48 /* ResidentVC.swift */; };
 		419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C22378412F00FC3D48 /* ResidentVM.swift */; };
+		419357C8237847FC00FC3D48 /* ImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C7237847FC00FC3D48 /* ImageViewVC.swift */; };
 		5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */; };
 		7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 		419357BD237838DC00FC3D48 /* ResidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentCell.swift; sourceTree = "<group>"; };
 		419357C02378412700FC3D48 /* ResidentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVC.swift; sourceTree = "<group>"; };
 		419357C22378412F00FC3D48 /* ResidentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVM.swift; sourceTree = "<group>"; };
+		419357C7237847FC00FC3D48 /* ImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewVC.swift; sourceTree = "<group>"; };
 		4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KaminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.release.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kamino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 		4193575B2377F8E900FC3D48 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				419357C6237847E400FC3D48 /* ImageView */,
 				419357BF237840FB00FC3D48 /* ResidentVC */,
 				419357B62378245A00FC3D48 /* Residents */,
 				419357B5237822A800FC3D48 /* Home */,
@@ -278,6 +281,14 @@
 				419357C22378412F00FC3D48 /* ResidentVM.swift */,
 			);
 			path = ResidentVC;
+			sourceTree = "<group>";
+		};
+		419357C6237847E400FC3D48 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				419357C7237847FC00FC3D48 /* ImageViewVC.swift */,
+			);
+			path = ImageView;
 			sourceTree = "<group>";
 		};
 		A48B10EDC3C4A0693975C385 /* Pods */ = {
@@ -525,6 +536,7 @@
 				419357C12378412700FC3D48 /* ResidentVC.swift in Sources */,
 				419357752377FD5800FC3D48 /* Planet.swift in Sources */,
 				419357B22378167500FC3D48 /* R.generated.swift in Sources */,
+				419357C8237847FC00FC3D48 /* ImageViewVC.swift in Sources */,
 				419357BC2378279C00FC3D48 /* ResidentsRepository.swift in Sources */,
 				419357972378077C00FC3D48 /* InteractiveCell.swift in Sources */,
 				419357702377FC8C00FC3D48 /* ViewModel.swift in Sources */,
