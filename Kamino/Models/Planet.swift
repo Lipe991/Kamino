@@ -43,16 +43,16 @@ extension Planet: Codable {
 extension Planet {
     var data: [CellType] {
         return [
-            .interactive(value: "Residents: \(residents?.count ?? 0)"),
-            .interactive(value: "Likes: \(likes ?? 0)"),
-            .normal(value: rotationPeriod, title: "rotation_period_localization"),
-            .normal(value: orbitalPeriod, title: "orbital_period_localization"),
-            .normal(value: diameter, title: "diameter_localization"),
-            .normal(value: climate, title: "climate_localization"),
-            .normal(value: gravity, title: "gravity_localization"),
-            .normal(value: terrain, title: "terrain_localization"),
-            .normal(value: surfaceWater, title: "surface_water_localization"),
-            .normal(value: population, title: "population_localization")
+            .interactive(value: String(format: "home_residents_count".localized, residents?.count ?? 0)),
+            .interactive(value: String(format: "home_like_count".localized, likes ?? 0)),
+            .normal(value: rotationPeriod, title: "rotation_period_localization".localized),
+            .normal(value: orbitalPeriod, title: "orbital_period_localization".localized),
+            .normal(value: diameter, title: "diameter_localization".localized),
+            .normal(value: climate, title: "climate_localization".localized),
+            .normal(value: gravity, title: "gravity_localization".localized),
+            .normal(value: terrain, title: "terrain_localization".localized),
+            .normal(value: surfaceWater, title: "surface_water_localization".localized),
+            .normal(value: population, title: "population_localization".localized)
         ]
     }
 }

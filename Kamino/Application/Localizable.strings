@@ -1,7 +1,9 @@
 /* 
-  Kamino.strings
+  Localizable.strings
   Kamino
 
   Created by Sandi Mihelic on 10/11/2019.
   Copyright © 2019 Sandi Mihelic. All rights reserved.
 */
+"home_residents_count"="Residents: %d";
+"home_like_count"="Likes: %d";
