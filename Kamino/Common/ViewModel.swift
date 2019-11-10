@@ -14,13 +14,13 @@ enum ErrorType: Error {
 }
 
 protocol ViewModelProtocol {
-    var isLoaded: ActivityIndicator { get set }
+    var isLoaded: BehaviorRelay<Bool> { get set }
     var onError: PublishSubject<ErrorType> { get set }
     init()
 }
 
 class ViewModel: ViewModelProtocol {    
-    var isLoaded = ActivityIndicator()
+    var isLoaded = BehaviorRelay<Bool>(value: false)
     var dispiseBag = DisposeBag()
     var onError = PublishSubject<ErrorType>()
     required init() {}

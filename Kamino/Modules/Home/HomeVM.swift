@@ -33,9 +33,10 @@ final class HomeVM: ViewModel {
     
     func transform(input: Input) -> Output {
         
-        let planet = input.load.flatMapLatest { [weak self] url in
+        let planet = input.load.flatMapLatest { [weak self] url -> Observable<Planet> in
+            self?.isLoaded.accept(false)
             return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
-        }.trackActivity(isLoaded)
+        }
         
         planet.subscribe(onError: { [weak self] (error) in
             guard let error = error as? ErrorType else { return }
@@ -54,6 +55,7 @@ final class HomeVM: ViewModel {
                 
         planet.subscribe(onNext: { [weak self] (planet) in
             self?.planet = planet
+            self?.isLoaded.accept(true)
         }).disposed(by: self.dispiseBag)
         
         return Output(image: image, name: name, items: sections)

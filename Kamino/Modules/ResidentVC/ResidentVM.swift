@@ -23,7 +23,6 @@ final class ResidentVM: ViewModel {
     }
     
     private let repo = ResidentsRepository()
-    private let _planet = PublishSubject<Planet>()
     
     func transform(input: Input) -> Output {
         
@@ -35,6 +34,8 @@ final class ResidentVM: ViewModel {
         
         let image = input.load.map { $0.imageUrl }
         let name = input.load.map { $0.name }
+        
+        input.load.map { _ in return true }.bind(to: isLoaded).disposed(by: dispiseBag)
         
         return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: nil), items: sections.asDriver(onErrorJustReturn: []))
     }
