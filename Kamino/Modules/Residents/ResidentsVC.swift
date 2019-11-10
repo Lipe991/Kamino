@@ -92,8 +92,9 @@ final class ResidentsVC: ViewController<ResidentsVM> {
             input.load.onNext(planet)
         }
         
-        collection.rx.modelSelected(Resident.self).subscribe(onNext: { (resident) in
-            print("Open \(resident.name)")
+        collection.rx.modelSelected(Resident.self).subscribe(onNext: { [weak self] (resident) in
+            let vc = ResidentVC(resident: resident)
+            self?.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
     }
 }

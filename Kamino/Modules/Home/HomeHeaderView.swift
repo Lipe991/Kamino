@@ -18,8 +18,8 @@ final class HomeHeaderView: UIView {
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .blue
         image.layer.borderColor = UIColor.white.cgColor
+        image.image = R.image.userAvatar()
         image.layer.borderWidth = 2
         return image
     }()
@@ -69,7 +69,7 @@ final class HomeHeaderView: UIView {
     private func bind() {
         image.subscribe(onNext: { [weak self] (url) in
             guard let self = self, let url = URL(string: url ?? "") else { return }
-            self.imageView.kf.setImage(with: url, placeholder: nil)
+            self.imageView.kf.setImage(with: url, placeholder: R.image.userAvatar())
         }).disposed(by: disposeBag)
     }
     

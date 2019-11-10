@@ -42,5 +42,4 @@ final class ResidentsVM: ViewModel {
         
         return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: nil), items: sections.asDriver(onErrorJustReturn: []))
     }
-
 }
