@@ -105,7 +105,7 @@ extension ResidentVC {
         let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { dataSource, collection, indexPath, item in
             
             switch item {
-            case .interactive(let value):
+            case .interactive(let value, _):
                 if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InteractiveCell", for: indexPath) as? InteractiveCell {
                     cell.populate(value: value)
                     return cell

@@ -11,15 +11,21 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
+enum CellAction {
+    case open
+    case like
+}
+
 enum CellType {
     case normal(value: String?, title: String)
-    case interactive(value: String?)
+    case interactive(value: String?, type: CellAction)
 }
 
 final class HomeVM: ViewModel {
     var planet: Planet?
     struct Input {
         var load = PublishSubject<String>()
+        var like = PublishSubject<Void>()
     }
     
     struct Output {
@@ -29,31 +35,43 @@ final class HomeVM: ViewModel {
     }
     
     private let repo = HomeRepository()
-    private let _planet = PublishSubject<Planet>()
+    private let _planet = BehaviorRelay<Planet?>(value: nil)
+    var hasLiked: Bool = false
     
     func transform(input: Input) -> Output {
-        
-        let planet = input.load.flatMapLatest { [weak self] url -> Observable<Planet> in
+        input.load.flatMapLatest { [weak self] url -> Observable<Planet> in
             self?.isLoaded.accept(false)
             return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
-        }
+            }.bind(to: _planet).disposed(by: dispiseBag)
         
-        planet.subscribe(onError: { [weak self] (error) in
+        input.like.filter { !self.hasLiked }.flatMapLatest { [weak self] _ -> Observable<Like> in
+            return self?.repo.likePlanet(id: 10) ?? Observable.empty()
+        }.subscribe(onNext: { [weak self] (like) in
+            guard let self = self else { return }
+            var planet = self._planet.value!
+            // +1 so the value gets updated, since the server is returning value 10
+            planet.likes = like.likes! + 1
+            self._planet.accept(planet)
+            self.hasLiked = true
+        }).disposed(by: dispiseBag)
+        
+        _planet.subscribe(onError: { [weak self] (error) in
             guard let error = error as? ErrorType else { return }
             self?.onError.onNext(error)
         }).disposed(by: dispiseBag)
 
         
-        let sections = planet.map { pl in
+        let sections = _planet.compactMap { pl -> [SectionModel<String, CellType>] in
+            guard let planet = pl else { return [] }
             return [
-                SectionModel(model: "Info", items: pl.data)
+                SectionModel(model: "Info", items: planet.data)
             ]
         }.asDriver(onErrorJustReturn: [])
         
-        let image = planet.map { $0.imageUrl }.asDriver(onErrorJustReturn: nil)
-        let name = planet.map { $0.name }.asDriver(onErrorJustReturn: nil)
+        let image = _planet.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
+        let name = _planet.map { $0?.name }.asDriver(onErrorJustReturn: nil)
                 
-        planet.subscribe(onNext: { [weak self] (planet) in
+        _planet.subscribe(onNext: { [weak self] (planet) in
             self?.planet = planet
             self?.isLoaded.accept(true)
         }).disposed(by: self.dispiseBag)

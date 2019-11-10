@@ -30,8 +30,17 @@ final class InteractiveCell: UICollectionViewCell {
         label.text = value
     }
     
-    private func setup() {
+    func disable() {
+        self.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        self.label.alpha = 0.5
+    }
+    
+    func enable() {
         backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+        self.label.alpha = 1.0
+    }
+    
+    private func setup() {
         addSubview(label)
         
         layer.cornerRadius = 15
@@ -41,5 +50,10 @@ final class InteractiveCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = bounds
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.enable()
     }
 }

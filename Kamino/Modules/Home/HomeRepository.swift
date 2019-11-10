@@ -27,4 +27,22 @@ final class HomeRepository {
             return Disposables.create()
         }
     }
+    
+    func likePlanet(id: Int) -> Observable<Like> {
+        return Observable.create { observer in
+        Alamofire.request("https://private-anon-11f41d95d7-starwars2.apiary-mock.com/planets/10/like", method: .post).responseData { (response) in
+                if let data = response.data, let json = String(data: data, encoding: .utf8) {
+                    do {
+                        let jsonData = json.data(using: .utf8)!
+                        let like = try JSONDecoder().decode(Like.self, from: jsonData)
+                        observer.onNext(like)
+                    } catch let error {
+                        observer.onError(ErrorType.error)
+                        print("Error: \(error.localizedDescription)")
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }
