@@ -14,6 +14,7 @@ enum NavigationType {
     case residents(with: Planet)
     case resident(with: Resident)
     case imageView(with: String)
+    case back
 }
 
 extension Managers {
@@ -37,6 +38,8 @@ extension Managers {
             case .imageView(let url):
                 let vc = ImageViewVC(image: url)
                 sender?.present(vc, animated: true, completion: nil)
+            case .back:
+                sender?.navigationController?.popViewController(animated: true)
             }
         }
     }

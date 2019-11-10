@@ -14,8 +14,8 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
     var input = VM.Input()
     var output: VM.Output!
     private var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>!
-    private lazy var header: HomeHeaderView = {
-        let header = HomeHeaderView()
+    private lazy var header: HeaderView = {
+        let header = HeaderView()
         header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
@@ -81,6 +81,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         view.addSubview(header)
         collectionConstraints.activate()
         headerConstraints.activate()
+        header.backButtonVisible = (self.navigationController?.viewControllers.count ?? 0) > 1
     }
     
     private func bind() {
@@ -99,6 +100,10 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         header.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
             guard let self = self, let url = url else { return }
             Managers.Navigator.shared.navigate(to: .imageView(with: url), from: self)
+        }).disposed(by: disposeBag)
+        
+        header.back.asDriver(onErrorJustReturn: ()).drive(onNext: { (_) in
+            Managers.Navigator.shared.navigate(to: .back, from: self)
         }).disposed(by: disposeBag)
     }
     

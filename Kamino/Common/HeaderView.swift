@@ -1,5 +1,5 @@
 //
-//  HomeHeaderView.swift
+//  HeaderView.swift
 //  Kamino
 //
 //  Created by Sandi Mihelic on 10/11/2019.
@@ -10,12 +10,29 @@ import UIKit
 import RxSwift
 import Kingfisher
 
-final class HomeHeaderView: UIView {
-    
+final class HeaderView: UIView {
     var disposeBag = DisposeBag()
     var image = PublishSubject<String?>()
     var open = PublishSubject<String?>()
+    var back = PublishSubject<Void>()
+    var backButtonVisible: Bool = false {
+        didSet {
+            self.backButton.isHidden = !backButtonVisible
+        }
+    }
+    
     private var currentUrl = ""
+    
+    private lazy var backButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(R.image.back(), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.rx.tap.asDriver().drive(onNext: { [weak self] (_) in
+            self?.back.onNext(())
+        }).disposed(by: disposeBag)
+        return btn
+    }()
+    
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +50,15 @@ final class HomeHeaderView: UIView {
         lbl.textColor = .white
         return lbl
     }()
+    
+    private var backConstraints: [NSLayoutConstraint] {
+        let safe = self.safeAreaLayoutGuide
+        return [
+            backButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            backButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: 25),
+            backButton.widthAnchor.constraint(equalToConstant: 35)
+        ]
+    }
     
     private var nameConstraints: [NSLayoutConstraint] {
         return [
@@ -64,8 +90,10 @@ final class HomeHeaderView: UIView {
         backgroundColor = R.color.headerColor()
         addSubview(imageView)
         addSubview(planetName)
+        addSubview(backButton)
         imageConstraints.activate()
         nameConstraints.activate()
+        backConstraints.activate()
     }
     
     private func bind() {
