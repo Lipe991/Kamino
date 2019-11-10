@@ -27,9 +27,14 @@ final class ResidentsVM: ViewModel {
     
     func transform(input: Input) -> Output {
         
-        let residents = input.load.flatMap { [weak self] planet in
+        let residents = input.load.flatMapLatest { [weak self] planet in
             return self?.repo.loadResidents(from: planet.residents ?? []) ?? Observable.empty()
         }.trackActivity(isLoaded)
+        
+        residents.subscribe(onError: { [weak self] (error) in
+            guard let error = error as? ErrorType else { return }
+            self?.onError.onNext(error)
+        }).disposed(by: dispiseBag)
         
         let sections = residents.map { residents in
             return [
