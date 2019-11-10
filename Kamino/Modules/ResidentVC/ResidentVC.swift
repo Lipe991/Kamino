@@ -10,30 +10,12 @@ import UIKit
 import RxDataSources
 
 final class ResidentVC: CollectionViewController<ResidentVM, CellType> {
-        
-    var resident: Resident!
-    convenience init(resident: Resident, vm: VM = VM()) {
-        self.init(with: vm)
-        self.resident = resident
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init(with vm: VM = VM()) {
-        super.init(with: vm)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        input.load.onNext(resident)
+        loadResident()
     }
-    
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>> {
         return RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { dataSource, collection, indexPath, item in
-            
             switch item {
             case .interactive:
                 break
@@ -46,5 +28,10 @@ final class ResidentVC: CollectionViewController<ResidentVM, CellType> {
             
             return UICollectionViewCell()
         })
+    }
+    
+    private func loadResident() {
+        guard let resident = viewModel.resident else { return }
+        input.load.onNext(resident)
     }
 }

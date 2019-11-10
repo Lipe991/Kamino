@@ -50,8 +50,7 @@ final class HomeVC: CollectionViewController<HomeVM, CellType> {
             guard let planet = self.viewModel.planet else { return }
             switch type {
             case .open:
-                let vc = ResidentsVC(planet: planet)
-                self.navigationController?.pushViewController(vc, animated: true)
+                Managers.Navigator.shared.navigate(to: .residents(with: planet), from: self)
             case .like:
                 self.input.like.onNext(())
             }

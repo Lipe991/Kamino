@@ -10,8 +10,10 @@ import Foundation
 import RxDataSources
 
 final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
-    
-    private var planet: Planet?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadPlanet()
+    }
     
     override var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
@@ -24,27 +26,7 @@ final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
         layout.minimumInteritemSpacing = 5
         return layout
     }
-    
-    convenience init(planet: Planet, vm: VM = VM()) {
-        self.init(with: vm)
-        self.planet = planet
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init(with vm: VM = VM()) {
-        super.init(with: vm)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let planet = planet {
-            input.load.onNext(planet)
-        }
-    }
-    
+        
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, Resident>> {
         let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Resident>>(configureCell: { dataSource, collection, indexPath, item in
             
@@ -59,7 +41,11 @@ final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
     }
     
     override func itemSelected(item: Resident) {
-        let vc = ResidentVC(resident: item)
-        self.navigationController?.pushViewController(vc, animated: true)
+        Managers.Navigator.shared.navigate(to: .resident(with: item), from: self)
+    }
+    
+    private func loadPlanet() {
+        guard let planet = viewModel.planet else { return }
+        input.load.onNext(planet)
     }
 }

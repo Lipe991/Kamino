@@ -23,6 +23,16 @@ final class ResidentVM: ViewModel, ViewModelType {
     }
     
     private let repo = ResidentsRepository()
+    var resident: Resident?
+    
+    init(with resident: Resident) {
+        super.init()
+        self.resident = resident
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
+    }
     
     func transform(from input: Input) -> Output {
         

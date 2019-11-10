@@ -23,7 +23,16 @@ final class ResidentsVM: ViewModel, ViewModelType {
     }
     
     private let repo = ResidentsRepository()
-    private let _residents = PublishSubject<[Resident]>()
+    private let _residents = BehaviorRelay<[Resident]>(value: [])
+    var planet: Planet?
+    init(with planet: Planet) {
+        super.init()
+        self.planet = planet
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
+    }
     
     func transform(from input: Input) -> Output {
         
@@ -32,7 +41,7 @@ final class ResidentsVM: ViewModel, ViewModelType {
             self.isLoaded.accept(false)
             return self.repo.loadResidents(from: planet.residents ?? [])
         }.subscribe(onNext: { [weak self] (residents) in
-            self?._residents.onNext(residents)
+            self?._residents.accept(residents)
         }, onError: { [weak self] _ in
             self?.onError.onNext(ErrorType.error)
         }).disposed(by: dispiseBag)

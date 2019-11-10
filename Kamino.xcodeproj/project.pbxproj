@@ -44,6 +44,8 @@
 		419357CA2378505300FC3D48 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357C92378505300FC3D48 /* ErrorView.swift */; };
 		419357CC2378584200FC3D48 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357CB2378584200FC3D48 /* LoadingView.swift */; };
 		419357CE23787BD200FC3D48 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357CD23787BD200FC3D48 /* CollectionViewController.swift */; };
+		419357D123788C7E00FC3D48 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357D023788C7E00FC3D48 /* Navigator.swift */; };
+		419357D323788C8C00FC3D48 /* Managers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357D223788C8C00FC3D48 /* Managers.swift */; };
 		5D471148E87E5A14A6CF4427 /* Pods_KaminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */; };
 		7DF40F4EA5852A3EDEA351CF /* Pods_Kamino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +104,8 @@
 		419357C92378505300FC3D48 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		419357CB2378584200FC3D48 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		419357CD23787BD200FC3D48 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		419357D023788C7E00FC3D48 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		419357D223788C8C00FC3D48 /* Managers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers.swift; sourceTree = "<group>"; };
 		4781FA7CE4BEDE0EAED26BF0 /* Pods_KaminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KaminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31B18E12B1037E020F44D66 /* Pods-KaminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaminoTests.release.xcconfig"; path = "Target Support Files/Pods-KaminoTests/Pods-KaminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D7323B6CB1A4EAB8ECFD17F6 /* Pods_Kamino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kamino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +155,7 @@
 		419357372377F62500FC3D48 /* Kamino */ = {
 			isa = PBXGroup;
 			children = (
+				419357CF23788C6600FC3D48 /* Managers */,
 				4193578B2378010C00FC3D48 /* Extensions */,
 				419357732377FD4800FC3D48 /* Models */,
 				4193575E2377FBE100FC3D48 /* Common */,
@@ -295,6 +300,15 @@
 				419357C7237847FC00FC3D48 /* ImageViewVC.swift */,
 			);
 			path = ImageView;
+			sourceTree = "<group>";
+		};
+		419357CF23788C6600FC3D48 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				419357D023788C7E00FC3D48 /* Navigator.swift */,
+				419357D223788C8C00FC3D48 /* Managers.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		A48B10EDC3C4A0693975C385 /* Pods */ = {
@@ -529,6 +543,7 @@
 				4193576E2377FC8400FC3D48 /* ViewController.swift in Sources */,
 				4193578F237801B300FC3D48 /* HomeVM.swift in Sources */,
 				41935795237804F500FC3D48 /* HomeHeaderView.swift in Sources */,
+				419357D123788C7E00FC3D48 /* Navigator.swift in Sources */,
 				419357792377FD6B00FC3D48 /* Like.swift in Sources */,
 				419357B82378249E00FC3D48 /* ResidentsVC.swift in Sources */,
 				419357C32378412F00FC3D48 /* ResidentVM.swift in Sources */,
@@ -536,6 +551,7 @@
 				419357392377F62500FC3D48 /* AppDelegate.swift in Sources */,
 				41935793237804D100FC3D48 /* InfoCell.swift in Sources */,
 				419357BA2378253500FC3D48 /* ResidentsVM.swift in Sources */,
+				419357D323788C8C00FC3D48 /* Managers.swift in Sources */,
 				419357772377FD5F00FC3D48 /* Resident.swift in Sources */,
 				419357A123780B8000FC3D48 /* String+Extra.swift in Sources */,
 				4193578D2378012B00FC3D48 /* NSLayoutConstraint+Extra.swift in Sources */,
