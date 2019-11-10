@@ -17,14 +17,14 @@ final class InfoCell: UICollectionViewCell {
         lbl.numberOfLines = 0
         return lbl
     }()
-    
+
     private lazy var line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private var lineConstraints: [NSLayoutConstraint] {
         return [
             line.leftAnchor.constraint(equalTo: leftAnchor),
@@ -33,29 +33,28 @@ final class InfoCell: UICollectionViewCell {
             line.heightAnchor.constraint(equalToConstant: 1)
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func populate(value: String?, title: String) {
         label.attributedText = buildAttributedText(value: value, title: title)
     }
-        
+
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = bounds
     }
-    
+
     private func setup() {
         addSubview(label)
         addSubview(line)
-        
         lineConstraints.activate()
     }
 

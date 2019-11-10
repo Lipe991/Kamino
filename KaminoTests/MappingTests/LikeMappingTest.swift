@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import RxBlocking
 
 @testable import Kamino
 
@@ -21,9 +20,13 @@ class LikeMappingTest: XCTestCase {
 
     func testLikeMapping() {
         let jsonData = jsonString.data(using: .utf8)!
-        let like = try! JSONDecoder().decode(Like.self, from: jsonData)
+        do {
+            let like = try JSONDecoder().decode(Like.self, from: jsonData)
+            XCTAssertEqual(like.planetId, 10)
+            XCTAssertEqual(like.likes, 10)
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
         
-        XCTAssertEqual(like.planetId, 10)
-        XCTAssertEqual(like.likes, 10)
-    }    
+    }
 }

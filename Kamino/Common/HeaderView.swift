@@ -20,9 +20,9 @@ final class HeaderView: UIView {
             self.backButton.isHidden = !backButtonVisible
         }
     }
-    
+
     private var currentUrl = ""
-    
+
     private lazy var backButton: UIButton = {
         let btn = UIButton()
         btn.setImage(R.image.back(), for: .normal)
@@ -32,7 +32,7 @@ final class HeaderView: UIView {
         }).disposed(by: disposeBag)
         return btn
     }()
-    
+
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ final class HeaderView: UIView {
         image.isUserInteractionEnabled = true
         return image
     }()
-    
+
     lazy var planetName: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class HeaderView: UIView {
         lbl.textColor = .white
         return lbl
     }()
-    
+
     private var backConstraints: [NSLayoutConstraint] {
         let safe = self.safeAreaLayoutGuide
         return [
@@ -59,14 +59,14 @@ final class HeaderView: UIView {
             backButton.widthAnchor.constraint(equalToConstant: 35)
         ]
     }
-    
+
     private var nameConstraints: [NSLayoutConstraint] {
         return [
             planetName.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             planetName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10)
         ]
     }
-    
+
     private var imageConstraints: [NSLayoutConstraint] {
         return [
             imageView.widthAnchor.constraint(equalToConstant: 80),
@@ -75,17 +75,17 @@ final class HeaderView: UIView {
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         bind()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setup() {
         backgroundColor = R.color.headerColor()
         addSubview(imageView)
@@ -95,20 +95,19 @@ final class HeaderView: UIView {
         nameConstraints.activate()
         backConstraints.activate()
     }
-    
+
     private func bind() {
         image.subscribe(onNext: { [weak self] (url) in
             self?.currentUrl = url ?? ""
             guard let self = self, let url = URL(string: url ?? "") else { return }
             self.imageView.kf.setImage(with: url, placeholder: R.image.userAvatar())
         }).disposed(by: disposeBag)
-        
+
         let tap = UITapGestureRecognizer()
         imageView.addGestureRecognizer(tap)
-        
         tap.rx.event.map { _ in return self.currentUrl }.bind(to: open).disposed(by: disposeBag)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = imageView.bounds.height / 2

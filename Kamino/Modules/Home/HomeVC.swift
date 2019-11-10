@@ -11,15 +11,15 @@ import UIKit
 import RxDataSources
 
 final class HomeVC: CollectionViewController<HomeVM, CellType> {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         input.load.onNext("10")
     }
-        
+
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>> {
-        let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { dataSource, collection, indexPath, item in
-            
+        let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { _, collection, indexPath, item in
+
             switch item {
             case .interactive(let value, let type):
                 if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InteractiveCell", for: indexPath) as? InteractiveCell {
@@ -38,12 +38,12 @@ final class HomeVC: CollectionViewController<HomeVM, CellType> {
                     return cell
                 }
             }
-            
+
             return UICollectionViewCell()
         })
         return ds
     }
-    
+
     override func itemSelected(item: CellType) {
         switch item {
         case .interactive(_, let type):

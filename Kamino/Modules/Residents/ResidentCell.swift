@@ -15,7 +15,7 @@ final class ResidentCell: UICollectionViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
+
     private lazy var label: UILabel = {
         let lbl = UILabel()
         lbl.textAlignment = .left
@@ -24,14 +24,14 @@ final class ResidentCell: UICollectionViewCell {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
-    
+
     private lazy var line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private var imageConstraints: [NSLayoutConstraint] {
         return [
             image.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
@@ -40,7 +40,7 @@ final class ResidentCell: UICollectionViewCell {
             image.heightAnchor.constraint(equalToConstant: 50)
         ]
     }
-    
+
     private var labelConstraints: [NSLayoutConstraint] {
         return [
             label.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 10),
@@ -48,7 +48,6 @@ final class ResidentCell: UICollectionViewCell {
             label.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
         ]
     }
-
 
     private var lineConstraints: [NSLayoutConstraint] {
         return [
@@ -58,39 +57,39 @@ final class ResidentCell: UICollectionViewCell {
             line.heightAnchor.constraint(equalToConstant: 1)
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func populate(with resident: Resident) {
         label.text = resident.name
         if let url = URL(string: resident.imageUrl ?? "") {
             image.kf.setImage(with: url, placeholder: R.image.userAvatar())
         }
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         image.image = nil
         label.text = nil
     }
-    
+
     private func setup() {
         addSubview(image)
         addSubview(label)
         addSubview(line)
-        
+
         lineConstraints.activate()
         imageConstraints.activate()
         labelConstraints.activate()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         image.layer.cornerRadius = image.bounds.height / 2

@@ -12,7 +12,7 @@ import Alamofire
 
 final class HomeRepository {
     func loadPlanet(id: Int) -> Observable<Planet> {
-        return Observable.create { observer in            Alamofire.request(Managers.Request.planet(id: 10).build(), method: .get).responseData { (response) in
+        return Observable.create { observer in            Alamofire.request(Managers.Request.planet(id: id).build(), method: .get).responseData { (response) in
                 if let data = response.data, let json = String(data: data, encoding: .utf8) {
                     do {
                         let jsonData = json.data(using: .utf8)!
@@ -27,10 +27,10 @@ final class HomeRepository {
             return Disposables.create()
         }
     }
-    
+
     func likePlanet(id: Int) -> Observable<Like> {
         return Observable.create { observer in
-            Alamofire.request(Managers.Request.like(id: 10).build(), method: .post).responseData { (response) in
+            Alamofire.request(Managers.Request.like(id: id).build(), method: .post).responseData { (response) in
                 if let data = response.data, let json = String(data: data, encoding: .utf8) {
                     do {
                         let jsonData = json.data(using: .utf8)!

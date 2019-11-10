@@ -16,21 +16,21 @@ final class ErrorView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var errorLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "error_text".localized
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
-    
+
     private var labelConstraint: [NSLayoutConstraint] {
         return [
             errorLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 15),
             errorLabel.centerXAnchor.constraint(equalTo: image.centerXAnchor)
         ]
     }
-    
+
     private var imageConstraint: [NSLayoutConstraint] {
         return [
             image.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -39,16 +39,16 @@ final class ErrorView: UIView {
             image.heightAnchor.constraint(equalToConstant: 60)
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setup() {
         addSubview(image)
         addSubview(errorLabel)

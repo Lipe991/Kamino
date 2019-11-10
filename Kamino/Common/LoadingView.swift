@@ -22,26 +22,26 @@ final class LoadingView: UIView {
             indicator.centerXAnchor.constraint(equalTo: centerXAnchor)
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setup() {
         backgroundColor = .white
         addSubview(indicator)
         indicatorConstraints.activate()
     }
-    
+
     func start() {
         indicator.startAnimating()
     }
-    
+
     func stop() {
         indicator.stopAnimating()
     }

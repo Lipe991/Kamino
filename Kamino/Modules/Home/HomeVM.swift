@@ -27,47 +27,46 @@ final class HomeVM: ViewModel, ViewModelType {
         var load = PublishSubject<String>()
         var like = PublishSubject<Void>()
     }
-    
+
     struct Output: OutputType {
         typealias Item = CellType
         var image: Driver<String?>
         var name: Driver<String?>
         var items: Driver<[SectionModel<String, CellType>]>
     }
-    
+
     private let repo = HomeRepository()
     private let _planet = BehaviorSubject<Planet?>(value: nil)
     var hasLiked: Bool = false
-    
+
     func transform(from input: Input) -> Output {
         bindLoadPlanet(input: input)
         bindLikePlanet(input: input)
-        
         let sections = _planet.compactMap { pl -> [SectionModel<String, CellType>] in
             guard let planet = pl else { return [] }
             return [
                 SectionModel(model: "Info", items: planet.data)
             ]
         }.asDriver(onErrorJustReturn: [])
-        
+
         let image = _planet.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
         let name = _planet.map { $0?.name }.asDriver(onErrorJustReturn: nil)
-                
+
         _planet.subscribe(onNext: { [weak self] (planet) in
             self?.planet = planet
             self?.isLoaded.accept(true)
         }).disposed(by: self.dispiseBag)
-        
+
         return Output(image: image, name: name, items: sections)
     }
-    
+
     private func bindLoadPlanet(input: Input) {
-        input.load.flatMapLatest { [weak self] url -> Observable<Planet> in
+        input.load.flatMapLatest { [weak self] _ -> Observable<Planet> in
             self?.isLoaded.accept(false)
             return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
         }.bind(to: _planet).disposed(by: dispiseBag)
     }
-    
+
     private func bindLikePlanet(input: Input) {
         input.like.filter { !self.hasLiked }.flatMapLatest { [weak self] _ -> Observable<Like> in
             return self?.repo.likePlanet(id: 10) ?? Observable.empty()

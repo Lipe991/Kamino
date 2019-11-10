@@ -15,7 +15,7 @@ final class ResidentVC: CollectionViewController<ResidentVM, CellType> {
         loadResident()
     }
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { dataSource, collection, indexPath, item in
+        return RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { _, collection, indexPath, item in
             switch item {
             case .interactive:
                 break

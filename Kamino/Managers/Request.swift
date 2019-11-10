@@ -8,16 +8,15 @@
 
 import Foundation
 
-
 extension Managers {
     enum Request {
         case planet(id: Int)
         case like(id: Int)
-        
+
         private var baseUrl: String {
             return "https://private-anon-11f41d95d7-starwars2.apiary-mock.com/"
         }
-        
+
         func build() -> String {
             switch self {
             case .planet(let id): return baseUrl + "planets/\(id)"

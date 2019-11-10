@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import RxDataSources
 
-class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: ViewController<VM> where Item == VM.Output.Item {
+// swiftlint:disable line_length
+class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:ViewController<VM> where Item == VM.Output.Item {
     var input = VM.Input()
     var output: VM.Output!
     private var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>!
@@ -19,7 +20,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
-    
+
     var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let width = (UIScreen.main.bounds.width - 55) / 2
@@ -31,7 +32,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         layout.headerReferenceSize = .zero
         return layout
     }
-    
+
     private lazy var collection: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.contentInset = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
@@ -43,7 +44,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         collectionView.register(ResidentCell.self, forCellWithReuseIdentifier: "ResidentCell")
         return collectionView
     }()
-    
+
     private var headerConstraints: [NSLayoutConstraint] {
         return [
             header.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -52,7 +53,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
             header.heightAnchor.constraint(equalToConstant: 175)
         ]
     }
-    
+
     private var collectionConstraints: [NSLayoutConstraint] {
         return [
             collection.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -68,13 +69,13 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         setup()
         bind()
     }
-    
+
     func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>(configureCell: { dataSource, collection, indexPath, item in
+        return RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>(configureCell: { _, _, _, _ in
             return UICollectionViewCell()
         })
     }
-    
+
     private func setup() {
         view.backgroundColor = .white
         view.addSubview(collection)
@@ -83,7 +84,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         headerConstraints.activate()
         header.backButtonVisible = (self.navigationController?.viewControllers.count ?? 0) > 1
     }
-    
+
     private func bind() {
         output = self.viewModel.transform(from: input)
         output.items.drive(collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
@@ -93,16 +94,16 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
         collection.rx.modelSelected(Item.self).subscribe(onNext: { [weak self] (type) in
             self?.itemSelected(item: type)
         }).disposed(by: disposeBag)
-        
+
         header.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
             guard let self = self, let url = url else { return }
             Managers.Navigator.shared.navigate(to: .imageView(with: url), from: self)
         }).disposed(by: disposeBag)
-        
+
         header.back.asDriver(onErrorJustReturn: ()).drive(onNext: { (_) in
             Managers.Navigator.shared.navigate(to: .back, from: self)
         }).disposed(by: disposeBag)
     }
-    
+
     func itemSelected(item: Item) {}
 }

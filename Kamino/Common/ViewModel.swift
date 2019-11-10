@@ -31,7 +31,6 @@ protocol OutputType {
     var items: Driver<[SectionModel<String, Item>]> { get set }
 }
 
-
 protocol ViewModelType {
     associatedtype Input: InputType
     associatedtype Output: OutputType

@@ -20,9 +20,9 @@ enum NavigationType {
 extension Managers {
     class Navigator {
         static let shared = Navigator()
-        
+
         private init() {}
-        
+
         func navigate(to type: NavigationType, from sender: UIViewController?) {
             switch type {
             case .planet:
