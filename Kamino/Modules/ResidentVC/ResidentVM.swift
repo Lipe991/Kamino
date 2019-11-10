@@ -11,24 +11,36 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
-final class ResidentVM: ViewModel {
-    struct Input {
+final class ResidentVM: ViewModel, ViewModelType {
+    struct Input: InputType {
         var load = PublishSubject<Resident>()
     }
     
-    struct Output {
+    struct Output: OutputType {
         var image: Driver<String?>
         var name: Driver<String?>
         var items: Driver<[SectionModel<String, CellType>]>
     }
     
     private let repo = ResidentsRepository()
+    var resident: Resident?
     
-    func transform(input: Input) -> Output {
+    // MARK: - Init
+    init(with resident: Resident) {
+        super.init()
+        self.resident = resident
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
+    }
+    
+    // MARK: - ViewModelType
+    func transform(from input: Input) -> Output {
         
         let sections = input.load.map { resident in
             return [
-                SectionModel(model: "Info", items: resident.data)
+                SectionModel(model: "", items: resident.data)
             ]
         }
         
