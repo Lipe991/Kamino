@@ -8,8 +8,15 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 final class ErrorView: UIView {
+    struct Actions {
+        var tryAgain = PublishSubject<Void>()
+    }
+    var actions = Actions()
+    
+    private let disposeBag = DisposeBag()
     private lazy var image: UIImageView = {
         let view = UIImageView()
         view.image = R.image.error()
@@ -23,7 +30,18 @@ final class ErrorView: UIView {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
+    
+    private lazy var tryAgainButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("error_try_again".localized, for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.rx.tap.bind(to: self.actions.tryAgain).disposed(by: disposeBag)
+        btn.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+        return btn
+    }()
 
+    // MARK: - Constraints
     private var labelConstraint: [NSLayoutConstraint] {
         return [
             errorLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 15),
@@ -37,6 +55,13 @@ final class ErrorView: UIView {
             image.centerXAnchor.constraint(equalTo: centerXAnchor),
             image.widthAnchor.constraint(equalToConstant: 60),
             image.heightAnchor.constraint(equalToConstant: 60)
+        ]
+    }
+    
+    private var tryAgainConstraints: [NSLayoutConstraint] {
+        return [
+            tryAgainButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 10),
+            tryAgainButton.centerXAnchor.constraint(equalTo: errorLabel.centerXAnchor)
         ]
     }
 
@@ -54,7 +79,9 @@ final class ErrorView: UIView {
     private func setup() {
         addSubview(image)
         addSubview(errorLabel)
+        addSubview(tryAgainButton)
         imageConstraint.activate()
         labelConstraint.activate()
+        tryAgainConstraints.activate()
     }
 }

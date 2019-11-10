@@ -28,3 +28,5 @@
 "image_error"="Image can not be shown";
 "home_like_error_title"="Like failed";
 "home_like_error_text"="Please try again in a few moments!";
+"error_try_again"="Try again";
+"residents_navigation_title"="%@ residents";

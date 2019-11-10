@@ -101,14 +101,16 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
             self?.itemSelected(item: type)
         }).disposed(by: disposeBag)
 
-        header.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
+        header.actions.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
             guard let self = self, let url = url else { return }
             Managers.Navigator.shared.navigate(to: .imageView(with: url), from: self)
         }).disposed(by: disposeBag)
 
-        header.back.asDriver(onErrorJustReturn: ()).drive(onNext: { (_) in
+        header.actions.back.asDriver(onErrorJustReturn: ()).drive(onNext: { (_) in
             Managers.Navigator.shared.navigate(to: .back, from: self)
         }).disposed(by: disposeBag)
+        
+        actions.retry.bind(to: input.retry).disposed(by: disposeBag)
     }
 }
 
