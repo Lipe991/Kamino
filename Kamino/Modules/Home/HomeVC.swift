@@ -72,9 +72,9 @@ final class HomeVC: ViewController<HomeVM> {
         let input = HomeVM.Input()
         dataSource = createDataSource()
         let output = self.viewModel.transform(input: input)
-        output.items.bind(to: collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        output.name.bind(to: header.planetName.rx.text).disposed(by: disposeBag)
-        output.image.bind(to: header.image).disposed(by: disposeBag)
+        output.items.drive(collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        output.name.drive(header.planetName.rx.text).disposed(by: disposeBag)
+        output.image.drive(header.image).disposed(by: disposeBag)
         
         input.load.onNext("abc")
         

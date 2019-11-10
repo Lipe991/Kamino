@@ -23,15 +23,22 @@ final class ResidentsVM: ViewModel {
     }
     
     private let repo = ResidentsRepository()
-    private let _planet = PublishSubject<Planet>()
+    private let _residents = PublishSubject<[Resident]>()
     
     func transform(input: Input) -> Output {
         
-        let residents = input.load.flatMap { [weak self] planet in
-            return self?.repo.loadResidents(from: planet.residents ?? []) ?? Observable.empty()
-        }.trackActivity(isLoaded)
+        input.load.flatMapLatest { [weak self] planet -> Observable<[Resident]> in
+            guard let self = self else { return Observable<[Resident]>.empty() }
+            self.isLoaded.accept(false)
+            return self.repo.loadResidents(from: planet.residents ?? [])
+        }.bind(to: _residents).disposed(by: dispiseBag)
         
-        let sections = residents.map { residents in
+        _residents.subscribe(onError: { [weak self] (error) in
+            guard let error = error as? ErrorType else { return }
+            self?.onError.onNext(error)
+        }).disposed(by: dispiseBag)
+        
+        let sections = _residents.map { residents in
             return [
                 SectionModel(model: "Residents", items: residents)
             ]
@@ -39,6 +46,8 @@ final class ResidentsVM: ViewModel {
         
         let image = input.load.map { $0.imageUrl }
         let name = input.load.map { $0.name }
+        
+        _residents.map { _ in return true }.bind(to: isLoaded).disposed(by: dispiseBag)
         
         return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: nil), items: sections.asDriver(onErrorJustReturn: []))
     }

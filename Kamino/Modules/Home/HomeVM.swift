@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxDataSources
+import RxCocoa
 
 enum CellType {
     case normal(value: String?, title: String)
@@ -22,9 +23,9 @@ final class HomeVM: ViewModel {
     }
     
     struct Output {
-        var image: Observable<String?>
-        var name: Observable<String?>
-        var items: Observable<[SectionModel<String, CellType>]>
+        var image: Driver<String?>
+        var name: Driver<String?>
+        var items: Driver<[SectionModel<String, CellType>]>
     }
     
     private let repo = HomeRepository()
@@ -32,21 +33,29 @@ final class HomeVM: ViewModel {
     
     func transform(input: Input) -> Output {
         
-        let planet = input.load.flatMapLatest { [weak self] url in
-            return self?.repo.loadPlanet(id: 10) ?? Observable.empty()
-        }.trackActivity(isLoaded)
+        let planet = input.load.flatMapLatest { [weak self] url -> Observable<Planet> in
+            self?.isLoaded.accept(false)
+            return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
+        }
+        
+        planet.subscribe(onError: { [weak self] (error) in
+            guard let error = error as? ErrorType else { return }
+            self?.onError.onNext(error)
+        }).disposed(by: dispiseBag)
+
         
         let sections = planet.map { pl in
             return [
                 SectionModel(model: "Info", items: pl.data)
             ]
-        }
+        }.asDriver(onErrorJustReturn: [])
         
-        let image = planet.map { $0.imageUrl }
-        let name = planet.map { $0.name }
-        
+        let image = planet.map { $0.imageUrl }.asDriver(onErrorJustReturn: nil)
+        let name = planet.map { $0.name }.asDriver(onErrorJustReturn: nil)
+                
         planet.subscribe(onNext: { [weak self] (planet) in
             self?.planet = planet
+            self?.isLoaded.accept(true)
         }).disposed(by: self.dispiseBag)
         
         return Output(image: image, name: name, items: sections)

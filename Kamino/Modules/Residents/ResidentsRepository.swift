@@ -26,7 +26,7 @@ final class ResidentsRepository {
                         let resident = try JSONDecoder().decode(Resident.self, from: jsonData)
                         observer.onNext(resident)
                     } catch let error {
-                        observer.onError(PlanetRequestError.error)
+                        observer.onError(ErrorType.error)
                         print("Error: \(error.localizedDescription)")
                     }
                 }

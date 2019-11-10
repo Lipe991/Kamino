@@ -21,7 +21,17 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
     
     var viewModel: VM
     
-    private lazy var loadingView = UIView() // TODO: - remove when a proper loading screen is implemented
+    private lazy var loadingView: LoadingView = {
+        let v = LoadingView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
+    private lazy var errorView: ErrorView = {
+        let error = ErrorView()
+        error.translatesAutoresizingMaskIntoConstraints = false
+        return error
+    }()
     
     required init(with vm: VM = VM()) {
         viewModel = vm
@@ -39,7 +49,10 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
             isLoaded ? self?.hideLoadingScreen() : self?.showLoadingScreen()
         }).disposed(by: disposeBag)
         
-        // viewModel.state.subscribe(onError: handleError).disposed(by: disposeBag)
+        viewModel.onError.observeOn(MainScheduler.instance).subscribe({ [weak self] (err) in
+            guard let self = self, let error = err.event.element else { return }
+            self.handleError(error)
+        }).disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -50,20 +63,33 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
     func handleError(_ error: Error) {
         guard let error = error as? ErrorType else { return }
         switch error {
-        case .empty:
-            print("Empty")
         case .error:
-            print("Error")
+            self.hideLoadingScreen()
+            view.addSubview(errorView)
+            [
+                errorView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                errorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 175),
+                errorView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ].activate()
+            view.bringSubviewToFront(errorView)
         }
     }
     
     private func showLoadingScreen() {
         view.addSubview(loadingView)
+        [
+            loadingView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ].activate()
         view.bringSubviewToFront(loadingView)
-        view.layoutSubviews()
+        loadingView.start()
     }
     
     private func hideLoadingScreen() {
+        loadingView.stop()
         loadingView.removeFromSuperview()
     }
 }

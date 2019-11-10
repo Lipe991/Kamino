@@ -10,15 +10,7 @@ import Foundation
 import RxSwift
 import Alamofire
 
-protocol HomeRepositoryType {
-    func loadPlanet(id: Int) -> Observable<Planet>
-}
-
-enum PlanetRequestError: Error {
-    case error
-}
-
-final class HomeRepository: HomeRepositoryType {
+final class HomeRepository {
     func loadPlanet(id: Int) -> Observable<Planet> {
         return Observable.create { observer in            Alamofire.request("https://private-anon-11f41d95d7-starwars2.apiary-mock.com/planets/10", method: .get).responseData { (response) in
                 if let data = response.data, let json = String(data: data, encoding: .utf8) {
@@ -27,7 +19,7 @@ final class HomeRepository: HomeRepositoryType {
                         let planet = try JSONDecoder().decode(Planet.self, from: jsonData)
                         observer.onNext(planet)
                     } catch let error {
-                        observer.onError(PlanetRequestError.error)
+                        observer.onError(ErrorType.error)
                         print("Error: \(error.localizedDescription)")
                     }
                 }
