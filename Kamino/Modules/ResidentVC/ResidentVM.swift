@@ -11,12 +11,12 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
-final class ResidentVM: ViewModel {
-    struct Input {
+final class ResidentVM: ViewModel, ViewModelType {
+    struct Input: InputType {
         var load = PublishSubject<Resident>()
     }
     
-    struct Output {
+    struct Output: OutputType {
         var image: Driver<String?>
         var name: Driver<String?>
         var items: Driver<[SectionModel<String, CellType>]>
@@ -24,7 +24,7 @@ final class ResidentVM: ViewModel {
     
     private let repo = ResidentsRepository()
     
-    func transform(input: Input) -> Output {
+    func transform(from input: Input) -> Output {
         
         let sections = input.load.map { resident in
             return [

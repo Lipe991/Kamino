@@ -11,12 +11,12 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
-final class ResidentsVM: ViewModel {
-    struct Input {
+final class ResidentsVM: ViewModel, ViewModelType {
+    struct Input: InputType {
         var load = PublishSubject<Planet>()
     }
     
-    struct Output {
+    struct Output: OutputType {
         var image: Driver<String?>
         var name: Driver<String?>
         var items: Driver<[SectionModel<String, Resident>]>
@@ -25,7 +25,7 @@ final class ResidentsVM: ViewModel {
     private let repo = ResidentsRepository()
     private let _residents = PublishSubject<[Resident]>()
     
-    func transform(input: Input) -> Output {
+    func transform(from input: Input) -> Output {
         
         input.load.flatMapLatest { [weak self] planet -> Observable<[Resident]> in
             guard let self = self else { return Observable<[Resident]>.empty() }
@@ -33,8 +33,8 @@ final class ResidentsVM: ViewModel {
             return self.repo.loadResidents(from: planet.residents ?? [])
         }.subscribe(onNext: { [weak self] (residents) in
             self?._residents.onNext(residents)
-        }, onError: { [weak self] (error) in
-            self?.onError.onNext(ViewModelError.error)
+        }, onError: { [weak self] _ in
+            self?.onError.onNext(ErrorType.error)
         }).disposed(by: dispiseBag)
                 
         let sections = _residents.map { residents in
