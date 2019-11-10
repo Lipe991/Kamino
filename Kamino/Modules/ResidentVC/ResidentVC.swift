@@ -89,7 +89,7 @@ final class ResidentVC: ViewController<ResidentVM> {
         output.name.drive(header.planetName.rx.text).disposed(by: disposeBag)
         output.image.drive(header.image).disposed(by: disposeBag)
         
-        header.open.subscribe(onNext: { [weak self] (url) in
+        header.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
             guard let self = self, let url = url else { return }
             self.present(ImageViewVC(image: url), animated: true, completion: nil)
         }).disposed(by: disposeBag)
