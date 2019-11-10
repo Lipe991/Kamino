@@ -73,6 +73,8 @@ final class HomeVC: ViewController<HomeVM> {
         dataSource = createDataSource()
         let output = self.viewModel.transform(input: input)
         output.items.bind(to: collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        output.name.bind(to: header.planetName.rx.text).disposed(by: disposeBag)
+        output.image.bind(to: header.image).disposed(by: disposeBag)
         
         input.load.onNext("abc")
         
@@ -99,7 +101,7 @@ extension HomeVC {
                 }
             case .normal(let value, let title):
                 if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as? InfoCell {
-                    cell.populate(value: value)
+                    cell.populate(value: value, title: title)
                     return cell
                 }
             }

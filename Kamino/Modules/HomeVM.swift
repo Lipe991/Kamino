@@ -11,7 +11,7 @@ import RxSwift
 import RxDataSources
 
 enum CellType {
-    case normal(value: String?, title: String?)
+    case normal(value: String?, title: String)
     case interactive(value: String?)
 }
 
@@ -22,6 +22,8 @@ final class HomeVM: ViewModel {
     }
     
     struct Output {
+        var image: Observable<String?>
+        var name: Observable<String?>
         var items: Observable<[SectionModel<String, CellType>]>
     }
     
@@ -40,6 +42,9 @@ final class HomeVM: ViewModel {
             ]
         }
         
-        return Output(items: sections)
+        let image = planet.map { $0.imageUrl }
+        let name = planet.map { $0.name }
+        
+        return Output(image: image, name: name, items: sections)
     }
 }
