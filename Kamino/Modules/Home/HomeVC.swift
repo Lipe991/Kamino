@@ -15,7 +15,7 @@ final class HomeVC: CollectionViewController<HomeVM, CellType> {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        input.load.onNext("10")
+        input.load.onNext(())
     }
 
     // MARK: - CollectionViewController
@@ -24,7 +24,7 @@ final class HomeVC: CollectionViewController<HomeVM, CellType> {
 
             switch item {
             case .interactive(let value, let type):
-                if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InteractiveCell", for: indexPath) as? InteractiveCell {
+                if let cell = self.makeCell(from: collection, index: indexPath, type: InteractiveCell.self) {
                     cell.populate(value: value)
                     switch type {
                     case .like:
@@ -35,7 +35,7 @@ final class HomeVC: CollectionViewController<HomeVM, CellType> {
                     return cell
                 }
             case .normal(let value, let title):
-                if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as? InfoCell {
+                if let cell = self.makeCell(from: collection, index: indexPath, type: InfoCell.self) {
                     cell.populate(value: value, title: title)
                     return cell
                 }

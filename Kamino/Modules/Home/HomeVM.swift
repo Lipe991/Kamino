@@ -23,7 +23,7 @@ enum CellType {
 
 final class HomeVM: ViewModel, ViewModelType {
     struct Input: InputType {
-        var load = PublishSubject<String>()
+        var load = PublishSubject<Void>()
         var like = PublishSubject<Void>()
     }
 

@@ -33,7 +33,7 @@ final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, Resident>> {
         let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Resident>>(configureCell: { _, collection, indexPath, item in
             
-            if let cell = collection.dequeueReusableCell(withReuseIdentifier: "ResidentCell", for: indexPath) as? ResidentCell {
+            if let cell = self.makeCell(from: collection, index: indexPath, type: ResidentCell.self) {
                 cell.populate(with: item)
                 return cell
             }

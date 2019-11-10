@@ -39,9 +39,9 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-        collectionView.register(InfoCell.self, forCellWithReuseIdentifier: "InfoCell")
-        collectionView.register(InteractiveCell.self, forCellWithReuseIdentifier: "InteractiveCell")
-        collectionView.register(ResidentCell.self, forCellWithReuseIdentifier: "ResidentCell")
+        collectionView.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.reuseIdentifier)
+        collectionView.register(InteractiveCell.self, forCellWithReuseIdentifier: InteractiveCell.reuseIdentifier)
+        collectionView.register(ResidentCell.self, forCellWithReuseIdentifier: ResidentCell.reuseIdentifier)
         return collectionView
     }()
     
@@ -64,7 +64,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         ]
     }
 
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = createDataSource()
@@ -110,5 +110,10 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
             Managers.Navigator.shared.navigate(to: .back, from: self)
         }).disposed(by: disposeBag)
     }
+}
 
+extension CollectionViewController {
+    func makeCell<T: UICollectionViewCell>(from col: UICollectionView, index: IndexPath, type: T.Type) -> T? {
+        return col.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: index) as? T
+    }
 }

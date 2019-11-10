@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4139E3332378AAF6006C9419 /* UICollectionViewCell+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E3322378AAF6006C9419 /* UICollectionViewCell+Extra.swift */; };
 		419357392377F62500FC3D48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357382377F62500FC3D48 /* AppDelegate.swift */; };
 		419357422377F62500FC3D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419357412377F62500FC3D48 /* Assets.xcassets */; };
 		419357452377F62500FC3D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419357432377F62500FC3D48 /* LaunchScreen.storyboard */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		0DB215EC6AF0007EFEF6F650 /* Pods-Kamino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.debug.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.debug.xcconfig"; sourceTree = "<group>"; };
 		215497C1B64C920E7369D799 /* Pods-Kamino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.release.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.release.xcconfig"; sourceTree = "<group>"; };
+		4139E3322378AAF6006C9419 /* UICollectionViewCell+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extra.swift"; sourceTree = "<group>"; };
 		419357352377F62400FC3D48 /* Kamino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kamino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		419357382377F62500FC3D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		419357412377F62500FC3D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				4193578C2378012B00FC3D48 /* NSLayoutConstraint+Extra.swift */,
 				419357A023780B8000FC3D48 /* String+Extra.swift */,
+				4139E3322378AAF6006C9419 /* UICollectionViewCell+Extra.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				419357972378077C00FC3D48 /* InteractiveCell.swift in Sources */,
 				419357702377FC8C00FC3D48 /* ViewModel.swift in Sources */,
 				4193575D2377F8FA00FC3D48 /* HomeVC.swift in Sources */,
+				4139E3332378AAF6006C9419 /* UICollectionViewCell+Extra.swift in Sources */,
 				419357D523789A5E00FC3D48 /* Request.swift in Sources */,
 				41935791237801D700FC3D48 /* HomeRepository.swift in Sources */,
 				419357BE237838DC00FC3D48 /* ResidentCell.swift in Sources */,

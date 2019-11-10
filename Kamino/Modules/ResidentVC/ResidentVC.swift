@@ -21,7 +21,7 @@ final class ResidentVC: CollectionViewController<ResidentVM, CellType> {
             case .interactive:
                 break
             case .normal(let value, let title):
-                if let cell = collection.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as? InfoCell {
+                if let cell = self.makeCell(from: collection, index: indexPath, type: InfoCell.self) {
                     cell.populate(value: value, title: title)
                     return cell
                 }
