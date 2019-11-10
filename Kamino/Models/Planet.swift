@@ -39,3 +39,20 @@ extension Planet: Codable {
         case likes
     }
 }
+
+extension Planet {
+    var data: [CellType] {
+        return [
+            .interactive(value: "Residents: \(residents?.count ?? 0)"),
+            .interactive(value: "Likes: \(likes ?? 0)"),
+            .normal(value: rotationPeriod, title: "rotation_period_localization"),
+            .normal(value: orbitalPeriod, title: "orbital_period_localization"),
+            .normal(value: diameter, title: "diameter_localization"),
+            .normal(value: climate, title: "climate_localization"),
+            .normal(value: gravity, title: "gravity_localization"),
+            .normal(value: terrain, title: "terrain_localization"),
+            .normal(value: surfaceWater, title: "surface_water_localization"),
+            .normal(value: population, title: "population_localization")
+        ]
+    }
+}
