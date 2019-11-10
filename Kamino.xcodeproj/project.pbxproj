@@ -171,12 +171,7 @@
 		4193575B2377F8E900FC3D48 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				4193575C2377F8FA00FC3D48 /* HomeVC.swift */,
-				4193578E237801B300FC3D48 /* HomeVM.swift */,
-				41935790237801D700FC3D48 /* HomeRepository.swift */,
-				41935792237804D100FC3D48 /* InfoCell.swift */,
-				41935794237804F500FC3D48 /* HomeHeaderView.swift */,
-				419357962378077C00FC3D48 /* InteractiveCell.swift */,
+				419357B5237822A800FC3D48 /* Home */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -236,6 +231,19 @@
 				419357A023780B8000FC3D48 /* String+Extra.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		419357B5237822A800FC3D48 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4193575C2377F8FA00FC3D48 /* HomeVC.swift */,
+				4193578E237801B300FC3D48 /* HomeVM.swift */,
+				41935790237801D700FC3D48 /* HomeRepository.swift */,
+				41935792237804D100FC3D48 /* InfoCell.swift */,
+				41935794237804F500FC3D48 /* HomeHeaderView.swift */,
+				419357962378077C00FC3D48 /* InteractiveCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A48B10EDC3C4A0693975C385 /* Pods */ = {
