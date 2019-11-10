@@ -17,7 +17,6 @@ final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
     
     override var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        // TODO: - Move this to Utils
         let width = (UIScreen.main.bounds.width - 50)
         layout.itemSize = CGSize(width: width, height: 80)
         layout.scrollDirection = .vertical

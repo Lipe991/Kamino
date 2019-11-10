@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxDataSources
 
-// swiftlint:disable line_length
 class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:ViewController<VM> where Item == VM.Output.Item {
     var input = VM.Input()
     var output: VM.Output!
