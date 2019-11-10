@@ -15,6 +15,7 @@ target 'Kamino' do
     pod 'Kingfisher', '~> 5.0'
     pod 'R.swift'
     pod 'MaterialActivityIndicator'
+    pod 'NotificationBannerSwift'
 
   target 'KaminoTests' do
     inherit! :search_paths

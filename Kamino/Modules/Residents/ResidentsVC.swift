@@ -11,7 +11,7 @@ import RxDataSources
 
 final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPlanet()
