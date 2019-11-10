@@ -21,9 +21,10 @@ final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
         let width = (UIScreen.main.bounds.width - 50)
         layout.itemSize = CGSize(width: width, height: 80)
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
+        layout.headerReferenceSize = .zero
         return layout
     }
         

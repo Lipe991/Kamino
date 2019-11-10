@@ -22,20 +22,20 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
     
     var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        // TODO: - Move this to Utils
         let width = (UIScreen.main.bounds.width - 55) / 2
         layout.itemSize = CGSize(width: width, height: 50)
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
+        layout.headerReferenceSize = .zero
         return layout
     }
     
     private lazy var collection: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
-        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.register(InfoCell.self, forCellWithReuseIdentifier: "InfoCell")
@@ -86,9 +86,6 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>: Vie
     
     private func bind() {
         output = self.viewModel.transform(from: input)
-        output.items.drive(onNext: { (items) in
-            print("Loaded items: \(items)")
-        }).disposed(by: disposeBag)
         output.items.drive(collection.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         output.name.drive(header.planetName.rx.text).disposed(by: disposeBag)
         output.image.drive(header.image).disposed(by: disposeBag)
