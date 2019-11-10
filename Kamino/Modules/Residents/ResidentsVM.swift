@@ -31,13 +31,12 @@ final class ResidentsVM: ViewModel {
             guard let self = self else { return Observable<[Resident]>.empty() }
             self.isLoaded.accept(false)
             return self.repo.loadResidents(from: planet.residents ?? [])
-        }.bind(to: _residents).disposed(by: dispiseBag)
-        
-        _residents.subscribe(onError: { [weak self] (error) in
-            guard let error = error as? ErrorType else { return }
-            self?.onError.onNext(error)
+        }.subscribe(onNext: { [weak self] (residents) in
+            self?._residents.onNext(residents)
+        }, onError: { [weak self] (error) in
+            self?.onError.onNext(ViewModelError.error)
         }).disposed(by: dispiseBag)
-        
+                
         let sections = _residents.map { residents in
             return [
                 SectionModel(model: "Residents", items: residents)

@@ -60,8 +60,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         loadingView.frame = view.bounds
     }
     
-    func handleError(_ error: Error) {
-        guard let error = error as? ErrorType else { return }
+    func handleError(_ error: ViewModelError) {
         switch error {
         case .error:
             self.hideLoadingScreen()

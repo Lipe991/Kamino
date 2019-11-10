@@ -13,15 +13,19 @@ enum ErrorType: Error {
     case error
 }
 
+enum ViewModelError {
+    case error
+}
+
 protocol ViewModelProtocol {
     var isLoaded: BehaviorRelay<Bool> { get set }
-    var onError: PublishSubject<ErrorType> { get set }
+    var onError: PublishSubject<ViewModelError> { get set }
     init()
 }
 
 class ViewModel: ViewModelProtocol {    
     var isLoaded = BehaviorRelay<Bool>(value: false)
     var dispiseBag = DisposeBag()
-    var onError = PublishSubject<ErrorType>()
+    var onError = PublishSubject<ViewModelError>()
     required init() {}
 }

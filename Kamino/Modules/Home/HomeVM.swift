@@ -35,7 +35,7 @@ final class HomeVM: ViewModel {
     }
     
     private let repo = HomeRepository()
-    private let _planet = BehaviorRelay<Planet?>(value: nil)
+    private let _planet = BehaviorSubject<Planet?>(value: nil)
     var hasLiked: Bool = false
     
     func transform(input: Input) -> Output {
@@ -47,17 +47,15 @@ final class HomeVM: ViewModel {
         input.like.filter { !self.hasLiked }.flatMapLatest { [weak self] _ -> Observable<Like> in
             return self?.repo.likePlanet(id: 10) ?? Observable.empty()
         }.subscribe(onNext: { [weak self] (like) in
-            guard let self = self else { return }
-            var planet = self._planet.value!
+            guard let self = self, var planet = try? self._planet.value() else { return }
             // +1 so the value gets updated, since the server is returning value 10
             planet.likes = like.likes! + 1
-            self._planet.accept(planet)
+            self._planet.onNext(planet)
             self.hasLiked = true
         }).disposed(by: dispiseBag)
         
         _planet.subscribe(onError: { [weak self] (error) in
-            guard let error = error as? ErrorType else { return }
-            self?.onError.onNext(error)
+            self?.onError.onNext(ViewModelError.error)
         }).disposed(by: dispiseBag)
 
         
