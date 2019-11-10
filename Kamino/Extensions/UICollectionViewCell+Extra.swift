@@ -1,5 +1,6 @@
+
 //
-//  HomeVC.swift
+//  UICollectionViewCell+Extra.swift
 //  Kamino
 //
 //  Created by Sandi Mihelic on 10/11/2019.
@@ -9,10 +10,8 @@
 import Foundation
 import UIKit
 
-final class HomeVC: UIViewController {
-    override func viewDidLoad() {
-        super.loadView()
-        
-        view.backgroundColor = .red
+extension UICollectionViewCell {
+    static var reuseIdentifier: String {
+        return String(describing: self)
     }
 }

@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Kamino
+
+  Created by Sandi Mihelic on 10/11/2019.
+  Copyright © 2019 Sandi Mihelic. All rights reserved.
+*/
+"home_residents_count"="Residents: %d";
+"home_like_count"="Likes: %d";
+"home_rotation_period_localization"="Rotation period";
+"home_orbital_period_localization"="Orbital period";
+"home_diameter_localization"="Diameter";
+"home_climate_localization"="Climate";
+"home_gravity_localization"="Gravity";
+"home_terrain_localization"="Terrain";
+"home_surface_water_localization"="Surface water";
+"home_population_localization"="Population";
+"resident_name_localization"="Name";
+"resident_height_localization"="Height";
+"resident_mass_localization"="Mass";
+"resident_hair_color_localization"="Hair color";
+"resident_skin_color_localization"="Skin color";
+"resident_eye_color_localization"="Eye color";
+"resident_birth_year_localization"="Birth year";
+"resident_gender_localization"="Gender";
+"home_homeworld_localization"="Homeworld";
+"error_text"="Something went wrong...";
+"image_error"="Image can not be shown";
