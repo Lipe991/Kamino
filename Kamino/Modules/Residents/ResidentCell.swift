@@ -32,6 +32,7 @@ final class ResidentCell: UICollectionViewCell {
         return view
     }()
 
+    // MARK: - Constraints
     private var imageConstraints: [NSLayoutConstraint] {
         return [
             image.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
@@ -58,6 +59,7 @@ final class ResidentCell: UICollectionViewCell {
         ]
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -66,18 +68,26 @@ final class ResidentCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        image.layer.cornerRadius = image.bounds.height / 2
+        image.clipsToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        image.image = nil
+        label.text = nil
+    }
 
+    // MARK: - Helpers
     func populate(with resident: Resident) {
         label.text = resident.name
         if let url = URL(string: resident.imageUrl ?? "") {
             image.kf.setImage(with: url, placeholder: R.image.userAvatar())
         }
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        image.image = nil
-        label.text = nil
     }
 
     private func setup() {
@@ -89,13 +99,6 @@ final class ResidentCell: UICollectionViewCell {
         imageConstraints.activate()
         labelConstraints.activate()
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        image.layer.cornerRadius = image.bounds.height / 2
-        image.clipsToBounds = true
-    }
-
 }
 
 extension UINavigationController: UIGestureRecognizerDelegate {

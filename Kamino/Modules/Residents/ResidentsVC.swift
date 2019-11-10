@@ -10,11 +10,14 @@ import Foundation
 import RxDataSources
 
 final class ResidentsVC: CollectionViewController<ResidentsVM, Resident> {
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPlanet()
     }
     
+    // MARK: - CollectionViewController
     override var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let width = (UIScreen.main.bounds.width - 50)

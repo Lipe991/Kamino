@@ -25,6 +25,7 @@ final class ResidentVM: ViewModel, ViewModelType {
     private let repo = ResidentsRepository()
     var resident: Resident?
     
+    // MARK: - Init
     init(with resident: Resident) {
         super.init()
         self.resident = resident
@@ -34,6 +35,7 @@ final class ResidentVM: ViewModel, ViewModelType {
         fatalError("init() has not been implemented")
     }
     
+    // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         
         let sections = input.load.map { resident in

@@ -51,6 +51,7 @@ final class HeaderView: UIView {
         return lbl
     }()
 
+    // MARK: - Constraints
     private var backConstraints: [NSLayoutConstraint] {
         let safe = self.safeAreaLayoutGuide
         return [
@@ -76,6 +77,7 @@ final class HeaderView: UIView {
         ]
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -86,6 +88,14 @@ final class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.cornerRadius = imageView.bounds.height / 2
+        imageView.clipsToBounds = true
+    }
+
+    // MARK: - Helpers
     private func setup() {
         backgroundColor = R.color.headerColor()
         addSubview(imageView)
@@ -106,11 +116,5 @@ final class HeaderView: UIView {
         let tap = UITapGestureRecognizer()
         imageView.addGestureRecognizer(tap)
         tap.rx.event.map { _ in return self.currentUrl }.bind(to: open).disposed(by: disposeBag)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        imageView.layer.cornerRadius = imageView.bounds.height / 2
-        imageView.clipsToBounds = true
     }
 }

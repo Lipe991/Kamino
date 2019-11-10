@@ -36,6 +36,7 @@ final class ImageViewVC: UIViewController {
         return lbl
     }()
     
+    // MARK: - Constraints
     private var errorConstraints: [NSLayoutConstraint] {
         return [
             errorLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -63,6 +64,7 @@ final class ImageViewVC: UIViewController {
         ]
     }
     
+    // MARK: - Init
     init(image url: String) {
         super.init(nibName: nil, bundle: nil)
         self.url = url
@@ -72,14 +74,16 @@ final class ImageViewVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
         view.addSubview(imageView)
         view.addSubview(button)
+
         imageConstraints.activate()
         buttonConstraints.activate()
-        view.backgroundColor = .black
         
         button.rx.tap.subscribe(onNext: { [weak self] (_) in
             self?.dismiss(animated: true, completion: nil)

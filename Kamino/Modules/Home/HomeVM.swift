@@ -39,6 +39,7 @@ final class HomeVM: ViewModel, ViewModelType {
     private let _planet = BehaviorSubject<Planet?>(value: nil)
     var hasLiked: Bool = false
 
+    // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         bindLoadPlanet(input: input)
         bindLikePlanet(input: input)
@@ -59,7 +60,8 @@ final class HomeVM: ViewModel, ViewModelType {
 
         return Output(image: image, name: name, items: sections)
     }
-
+    
+    // MARK: - Helpers
     private func bindLoadPlanet(input: Input) {
         input.load.flatMapLatest { [weak self] _ -> Observable<Planet> in
             self?.isLoaded.accept(false)

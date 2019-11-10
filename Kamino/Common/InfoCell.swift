@@ -25,6 +25,7 @@ final class InfoCell: UICollectionViewCell {
         return view
     }()
 
+    // MARK: - Constraints
     private var lineConstraints: [NSLayoutConstraint] {
         return [
             line.leftAnchor.constraint(equalTo: leftAnchor),
@@ -34,6 +35,7 @@ final class InfoCell: UICollectionViewCell {
         ]
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -43,13 +45,15 @@ final class InfoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populate(value: String?, title: String) {
-        label.attributedText = buildAttributedText(value: value, title: title)
-    }
-
+    // MARK: - Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = bounds
+    }
+    
+    // MARK: - Helpers
+    func populate(value: String?, title: String) {
+        label.attributedText = buildAttributedText(value: value, title: title)
     }
 
     private func setup() {

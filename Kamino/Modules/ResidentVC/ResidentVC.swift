@@ -10,6 +10,7 @@ import UIKit
 import RxDataSources
 
 final class ResidentVC: CollectionViewController<ResidentVM, CellType> {
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadResident()

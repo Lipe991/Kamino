@@ -18,7 +18,6 @@ protocol ViewControllerType {
 
 class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerType {
     var disposeBag = DisposeBag()
-
     var viewModel: VM
 
     private lazy var loadingView: LoadingView = {
@@ -33,6 +32,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         return error
     }()
 
+    // MARK: - Init
     required init(with vm: VM = VM()) {
         viewModel = vm
         super.init(nibName: nil, bundle: nil)
@@ -42,6 +42,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +61,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
         loadingView.frame = view.bounds
     }
 
+    // MARK: - Helpers
     func handleError(_ error: ErrorType) {
         switch error {
         case .error:

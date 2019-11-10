@@ -23,6 +23,7 @@ final class LoadingView: UIView {
         ]
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -32,6 +33,7 @@ final class LoadingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Helpers
     private func setup() {
         backgroundColor = .white
         addSubview(indicator)

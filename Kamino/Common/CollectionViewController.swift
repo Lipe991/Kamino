@@ -14,12 +14,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
     var input = VM.Input()
     var output: VM.Output!
     private var dataSource: RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>!
-    private lazy var header: HeaderView = {
-        let header = HeaderView()
-        header.translatesAutoresizingMaskIntoConstraints = false
-        return header
-    }()
-
+    
     var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let width = (UIScreen.main.bounds.width - 55) / 2
@@ -32,6 +27,12 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         return layout
     }
 
+    private lazy var header: HeaderView = {
+        let header = HeaderView()
+        header.translatesAutoresizingMaskIntoConstraints = false
+        return header
+    }()
+
     private lazy var collection: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.contentInset = UIEdgeInsets(top: 170, left: 0, bottom: 0, right: 0)
@@ -43,7 +44,8 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         collectionView.register(ResidentCell.self, forCellWithReuseIdentifier: "ResidentCell")
         return collectionView
     }()
-
+    
+    // MARK: - Constraints
     private var headerConstraints: [NSLayoutConstraint] {
         return [
             header.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -62,6 +64,7 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         ]
     }
 
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = createDataSource()
@@ -69,12 +72,16 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         bind()
     }
 
+    // MARK: - Rx
     func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>> {
         return RxCollectionViewSectionedReloadDataSource<SectionModel<String, Item>>(configureCell: { _, _, _, _ in
             return UICollectionViewCell()
         })
     }
 
+    func itemSelected(item: Item) {}
+    
+    // MARK: - Helpers
     private func setup() {
         view.backgroundColor = .white
         view.addSubview(collection)
@@ -104,5 +111,4 @@ class CollectionViewController<VM: ViewModelProtocol & ViewModelType, Item>:View
         }).disposed(by: disposeBag)
     }
 
-    func itemSelected(item: Item) {}
 }

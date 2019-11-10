@@ -17,6 +17,7 @@ final class InteractiveCell: UICollectionViewCell {
         return lbl
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -25,7 +26,19 @@ final class InteractiveCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        label.frame = bounds
+    }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.enable()
+    }
+
+    // MARK: - Helpers
     func populate(value: String?) {
         label.text = value
     }
@@ -47,13 +60,4 @@ final class InteractiveCell: UICollectionViewCell {
         layer.masksToBounds = true
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = bounds
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.enable()
-    }
 }

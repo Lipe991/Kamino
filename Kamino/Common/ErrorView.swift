@@ -40,6 +40,7 @@ final class ErrorView: UIView {
         ]
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -49,6 +50,7 @@ final class ErrorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Helper
     private func setup() {
         addSubview(image)
         addSubview(errorLabel)

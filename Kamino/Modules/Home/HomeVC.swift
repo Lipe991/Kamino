@@ -12,11 +12,13 @@ import RxDataSources
 
 final class HomeVC: CollectionViewController<HomeVM, CellType> {
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         input.load.onNext("10")
     }
 
+    // MARK: - CollectionViewController
     override func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>> {
         let ds = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellType>>(configureCell: { _, collection, indexPath, item in
 
