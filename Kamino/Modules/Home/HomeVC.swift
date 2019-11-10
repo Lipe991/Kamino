@@ -89,6 +89,11 @@ final class HomeVC: ViewController<HomeVM> {
                 return
             }
         }).disposed(by: disposeBag)
+        
+        header.open.asDriver(onErrorJustReturn: "").drive(onNext: { [weak self] (url) in
+            guard let self = self, let url = url else { return }
+            self.present(ImageViewVC(image: url), animated: true, completion: nil)
+        }).disposed(by: disposeBag)
     }
 }
 
