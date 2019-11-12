@@ -33,7 +33,6 @@ final class ResidentVM: ViewModel, ViewModelType {
         
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
-        
         let sections = input.load.map { resident in
             return [
                 SectionModel(model: "", items: resident.data)
