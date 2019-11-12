@@ -28,7 +28,7 @@ extension Managers {
             case .planet:
                 sender?.navigationController?.popToRootViewController(animated: true)
             case .residents(let planet):
-                let vc = ResidentsVC(with: ResidentsVM(with: planet))
+                let vc = ResidentsVC(with: ResidentsVM(with: ResidentsRepository(), planet: planet))
                 vc.input.load.onNext(planet)
                 sender?.navigationController?.pushViewController(vc, animated: true)
             case .resident(let resident):

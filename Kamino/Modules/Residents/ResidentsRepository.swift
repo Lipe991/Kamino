@@ -10,7 +10,11 @@ import Foundation
 import Alamofire
 import RxSwift
 
-final class ResidentsRepository {
+protocol ResidentsRepositoryProtocol {
+    func loadResidents(from urls: [String]) -> Observable<[Resident]>
+}
+
+final class ResidentsRepository: ResidentsRepositoryProtocol {
     private let disposeBag = DisposeBag()
     func loadResidents(from urls: [String]) -> Observable<[Resident]> {
         let urlObservables = urls.map { self.load(from: $0) }

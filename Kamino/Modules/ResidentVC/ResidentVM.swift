@@ -23,7 +23,6 @@ final class ResidentVM: ViewModel, ViewModelType {
         var items: Driver<[SectionModel<String, CellType>]>
     }
     
-    private let repo = ResidentsRepository()
     var resident: Resident?
     
     // MARK: - Init
@@ -31,11 +30,7 @@ final class ResidentVM: ViewModel, ViewModelType {
         super.init()
         self.resident = resident
     }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-    
+        
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         
