@@ -39,9 +39,14 @@ final class HomeVM: ViewModel, ViewModelType {
         return _planet.value
     }
 
-    private let repo = HomeRepository()
+    private let repo: HomeRepositoryProtocol
     private let _planet = BehaviorRelay<Planet?>(value: nil)
 
+    init(with repo: HomeRepositoryProtocol) {
+        self.repo = repo
+        super.init()
+    }
+    
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         bindRetryLoad(input: input)

@@ -23,20 +23,17 @@ final class ResidentsVM: ViewModel, ViewModelType {
         var items: Driver<[SectionModel<String, Resident>]>
     }
     
-    private let repo = ResidentsRepository()
+    private let repo: ResidentsRepositoryProtocol
     private let _residents = BehaviorRelay<[Resident]>(value: [])
     var planet: Planet?
     
     // MARK: - Init
-    init(with planet: Planet) {
+    init(with repo: ResidentsRepositoryProtocol, planet: Planet) {
+        self.repo = repo
         super.init()
         self.planet = planet
     }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-    
+        
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         bindRetryLoad(input: input)
