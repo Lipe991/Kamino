@@ -76,7 +76,7 @@ final class HomeVM: ViewModel, ViewModelType {
             guard let self = self, var planet = self.planetRelay.value else { return }
             // +1 so the value gets updated, since the server is returning value 10
             planet.likes = like.likes! + 1
-            self._planet.accept(planet)
+            self.planetRelay.accept(planet)
             self.hasLiked = true
             }, onError: { [weak self] _ in
                 self?.onError.onNext(ErrorType.likeError)
