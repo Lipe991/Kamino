@@ -27,6 +27,5 @@ class LikeMappingTest: XCTestCase {
         } catch let error {
             fatalError(error.localizedDescription)
         }
-        
     }
 }
