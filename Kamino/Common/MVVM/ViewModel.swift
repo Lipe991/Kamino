@@ -19,7 +19,12 @@ enum ErrorType: Error {
 protocol ViewModelProtocol {
     var isLoaded: BehaviorRelay<Bool> { get set }
     var onError: PublishSubject<ErrorType> { get set }
-    init()
+}
+
+protocol ViewModelType {
+    associatedtype Input: InputType
+    associatedtype Output: OutputType
+    func transform(from input: Input) -> Output
 }
 
 protocol InputType {
@@ -34,15 +39,8 @@ protocol OutputType {
     var items: Driver<[SectionModel<String, Item>]> { get set }
 }
 
-protocol ViewModelType {
-    associatedtype Input: InputType
-    associatedtype Output: OutputType
-    func transform(from input: Input) -> Output
-}
-
 class ViewModel: ViewModelProtocol {
     var isLoaded = BehaviorRelay<Bool>(value: false)
     var dispiseBag = DisposeBag()
     var onError = PublishSubject<ErrorType>()
-    required init() {}
 }

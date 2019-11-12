@@ -12,31 +12,17 @@ import RxDataSources
 import RxCocoa
 
 final class ResidentsVM: ViewModel, ViewModelType {
-    struct Input: InputType {
-        var retry = PublishSubject<Void>()
-        var load = PublishSubject<Planet>()
-    }
-    
-    struct Output: OutputType {
-        var image: Driver<String?>
-        var name: Driver<String>
-        var items: Driver<[SectionModel<String, Resident>]>
-    }
-    
-    private let repo = ResidentsRepository()
+    private let repo: ResidentsRepositoryProtocol
     private let _residents = BehaviorRelay<[Resident]>(value: [])
     var planet: Planet?
     
     // MARK: - Init
-    init(with planet: Planet) {
+    init(with repo: ResidentsRepositoryProtocol, planet: Planet) {
+        self.repo = repo
         super.init()
         self.planet = planet
     }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-    
+        
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         bindRetryLoad(input: input)
@@ -72,5 +58,18 @@ final class ResidentsVM: ViewModel, ViewModelType {
             self?.bindLoadResident(with: input)
         }).disposed(by: dispiseBag)
 
+    }
+}
+
+extension ResidentsVM {
+    struct Input: InputType {
+        var retry = PublishSubject<Void>()
+        var load = PublishSubject<Planet>()
+    }
+    
+    struct Output: OutputType {
+        var image: Driver<String?>
+        var name: Driver<String>
+        var items: Driver<[SectionModel<String, Resident>]>
     }
 }

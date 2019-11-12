@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4139E3332378AAF6006C9419 /* UICollectionViewCell+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E3322378AAF6006C9419 /* UICollectionViewCell+Extra.swift */; };
+		4139E336237B2C07006C9419 /* MockHomeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E335237B2C07006C9419 /* MockHomeRepo.swift */; };
+		4139E338237B2C13006C9419 /* MockResidentsRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E337237B2C13006C9419 /* MockResidentsRepo.swift */; };
+		4139E33D237B2F1A006C9419 /* HomeVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E33C237B2F1A006C9419 /* HomeVMTest.swift */; };
+		4139E33F237B3FD7006C9419 /* ResidentsVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E33E237B3FD7006C9419 /* ResidentsVMTest.swift */; };
+		4139E341237B433A006C9419 /* ResidentVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E340237B433A006C9419 /* ResidentVMTest.swift */; };
+		4139E343237B46A6006C9419 /* CellTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4139E342237B46A6006C9419 /* CellTypes.swift */; };
 		419357392377F62500FC3D48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419357382377F62500FC3D48 /* AppDelegate.swift */; };
 		419357422377F62500FC3D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419357412377F62500FC3D48 /* Assets.xcassets */; };
 		419357452377F62500FC3D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419357432377F62500FC3D48 /* LaunchScreen.storyboard */; };
@@ -66,6 +72,12 @@
 		0DB215EC6AF0007EFEF6F650 /* Pods-Kamino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.debug.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.debug.xcconfig"; sourceTree = "<group>"; };
 		215497C1B64C920E7369D799 /* Pods-Kamino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kamino.release.xcconfig"; path = "Target Support Files/Pods-Kamino/Pods-Kamino.release.xcconfig"; sourceTree = "<group>"; };
 		4139E3322378AAF6006C9419 /* UICollectionViewCell+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extra.swift"; sourceTree = "<group>"; };
+		4139E335237B2C07006C9419 /* MockHomeRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRepo.swift; sourceTree = "<group>"; };
+		4139E337237B2C13006C9419 /* MockResidentsRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResidentsRepo.swift; sourceTree = "<group>"; };
+		4139E33C237B2F1A006C9419 /* HomeVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVMTest.swift; sourceTree = "<group>"; };
+		4139E33E237B3FD7006C9419 /* ResidentsVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsVMTest.swift; sourceTree = "<group>"; };
+		4139E340237B433A006C9419 /* ResidentVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentVMTest.swift; sourceTree = "<group>"; };
+		4139E342237B46A6006C9419 /* CellTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTypes.swift; sourceTree = "<group>"; };
 		419357352377F62400FC3D48 /* Kamino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kamino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		419357382377F62500FC3D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		419357412377F62500FC3D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +148,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4139E334237B2BEB006C9419 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				4139E335237B2C07006C9419 /* MockHomeRepo.swift */,
+				4139E337237B2C13006C9419 /* MockResidentsRepo.swift */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		4139E339237B2E32006C9419 /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				4139E33C237B2F1A006C9419 /* HomeVMTest.swift */,
+				4139E33E237B3FD7006C9419 /* ResidentsVMTest.swift */,
+				4139E340237B433A006C9419 /* ResidentVMTest.swift */,
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		4139E344237B46B7006C9419 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				41935794237804F500FC3D48 /* HeaderView.swift */,
+				419357C92378505300FC3D48 /* ErrorView.swift */,
+				419357CB2378584200FC3D48 /* LoadingView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4139E345237B46CF006C9419 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				4193576D2377FC8400FC3D48 /* ViewController.swift */,
+				4193576F2377FC8C00FC3D48 /* ViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		4139E346237B46ED006C9419 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				419357CD23787BD200FC3D48 /* CollectionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4139E347237B4707006C9419 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				41935792237804D100FC3D48 /* InfoCell.swift */,
+				419357962378077C00FC3D48 /* InteractiveCell.swift */,
+				4139E342237B46A6006C9419 /* CellTypes.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		4193572C2377F62400FC3D48 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +240,8 @@
 		4193574E2377F62600FC3D48 /* KaminoTests */ = {
 			isa = PBXGroup;
 			children = (
+				4139E339237B2E32006C9419 /* ViewModelTests */,
+				4139E334237B2BEB006C9419 /* Repos */,
 				419357842377FFC400FC3D48 /* MappingTests */,
 				419357812377FF6900FC3D48 /* helper */,
 				4193577A2377FF3200FC3D48 /* Mocks */,
@@ -209,14 +279,10 @@
 		4193575E2377FBE100FC3D48 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4193576D2377FC8400FC3D48 /* ViewController.swift */,
-				4193576F2377FC8C00FC3D48 /* ViewModel.swift */,
-				419357C92378505300FC3D48 /* ErrorView.swift */,
-				419357CB2378584200FC3D48 /* LoadingView.swift */,
-				419357CD23787BD200FC3D48 /* CollectionViewController.swift */,
-				41935792237804D100FC3D48 /* InfoCell.swift */,
-				419357962378077C00FC3D48 /* InteractiveCell.swift */,
-				41935794237804F500FC3D48 /* HeaderView.swift */,
+				4139E347237B4707006C9419 /* cells */,
+				4139E346237B46ED006C9419 /* ViewControllers */,
+				4139E345237B46CF006C9419 /* MVVM */,
+				4139E344237B46B7006C9419 /* view */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -579,6 +645,7 @@
 				419357772377FD5F00FC3D48 /* Resident.swift in Sources */,
 				419357A123780B8000FC3D48 /* String+Extra.swift in Sources */,
 				4193578D2378012B00FC3D48 /* NSLayoutConstraint+Extra.swift in Sources */,
+				4139E343237B46A6006C9419 /* CellTypes.swift in Sources */,
 				419357C12378412700FC3D48 /* ResidentVC.swift in Sources */,
 				419357752377FD5800FC3D48 /* Planet.swift in Sources */,
 				419357B22378167500FC3D48 /* R.generated.swift in Sources */,
@@ -602,9 +669,14 @@
 			files = (
 				419357832377FF7B00FC3D48 /* MockLoader.swift in Sources */,
 				419357862377FFDB00FC3D48 /* PlanetMappingTest.swift in Sources */,
+				4139E33F237B3FD7006C9419 /* ResidentsVMTest.swift in Sources */,
+				4139E336237B2C07006C9419 /* MockHomeRepo.swift in Sources */,
 				4193578A2377FFF400FC3D48 /* LikeMappingTest.swift in Sources */,
+				4139E338237B2C13006C9419 /* MockResidentsRepo.swift in Sources */,
+				4139E341237B433A006C9419 /* ResidentVMTest.swift in Sources */,
 				419357882377FFEB00FC3D48 /* ResidentMappingTest.swift in Sources */,
 				419357502377F62600FC3D48 /* KaminoTests.swift in Sources */,
+				4139E33D237B2F1A006C9419 /* HomeVMTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

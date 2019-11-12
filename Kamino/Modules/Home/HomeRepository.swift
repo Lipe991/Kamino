@@ -10,7 +10,12 @@ import Foundation
 import RxSwift
 import Alamofire
 
-final class HomeRepository {
+protocol HomeRepositoryProtocol {
+    func loadPlanet(id: Int) -> Observable<Planet>
+    func likePlanet(id: Int) -> Observable<Like>
+}
+
+final class HomeRepository: HomeRepositoryProtocol {
     func loadPlanet(id: Int) -> Observable<Planet> {
         return Observable.create { observer in            Alamofire.request(Managers.Request.planet(id: id).build(), method: .get).responseData { (response) in
                 if let data = response.data, let json = String(data: data, encoding: .utf8) {

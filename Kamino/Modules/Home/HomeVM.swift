@@ -11,51 +11,35 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 
-enum CellAction {
-    case open
-    case like
-}
-
-enum CellType {
-    case normal(value: String?, title: String)
-    case interactive(value: String?, type: CellAction)
-}
-
 final class HomeVM: ViewModel, ViewModelType {
-    struct Input: InputType {
-        var retry = PublishSubject<Void>()
-        var load = PublishSubject<Void>()
-        var like = PublishSubject<Void>()
-    }
-
-    struct Output: OutputType {
-        typealias Item = CellType
-        var image: Driver<String?>
-        var name: Driver<String>
-        var items: Driver<[SectionModel<String, CellType>]>
-    }
     var hasLiked: Bool = false
     var planet: Planet? {
-        return _planet.value
+        return planetRelay.value
     }
-
-    private let repo = HomeRepository()
-    private let _planet = BehaviorRelay<Planet?>(value: nil)
-
+    
+    private let repo: HomeRepositoryProtocol
+    private let planetRelay = BehaviorRelay<Planet?>(value: nil)
+    
+    // MARK: - Init
+    init(with repo: HomeRepositoryProtocol) {
+        self.repo = repo
+        super.init()
+    }
+    
     // MARK: - ViewModelType
     func transform(from input: Input) -> Output {
         bindRetryLoad(input: input)
         bindLoadPlanet(input: input)
         bindLikePlanet(input: input)
-        let sections = _planet.compactMap { pl -> [SectionModel<String, CellType>] in
+        let sections = planetRelay.compactMap { pl -> [SectionModel<String, CellType>] in
             guard let planet = pl else { return [] }
             return [
                 SectionModel(model: "", items: planet.data)
             ]
         }.asDriver(onErrorJustReturn: [])
 
-        let image = _planet.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
-        let name = _planet.map { $0?.name ?? "" }.asDriver(onErrorJustReturn: "")
+        let image = planetRelay.map { $0?.imageUrl }.asDriver(onErrorJustReturn: nil)
+        let name = planetRelay.map { $0?.name ?? "" }.asDriver(onErrorJustReturn: "")
 
         return Output(image: image, name: name, items: sections)
     }
@@ -75,7 +59,7 @@ final class HomeVM: ViewModel, ViewModelType {
             self?.isLoaded.accept(false)
             return self?.repo.loadPlanet(id: 10) ?? Observable<Planet>.empty()
         }.subscribe(onNext: { [weak self] (planet) in
-            self?._planet.accept(planet)
+            self?.planetRelay.accept(planet)
             self?.isLoaded.accept(true)
             self?.onError.onNext(.noError)
         }, onError: { [weak self] (error) in
@@ -89,13 +73,28 @@ final class HomeVM: ViewModel, ViewModelType {
         input.like.filter { !self.hasLiked }.flatMapLatest { [weak self] _ -> Observable<Like> in
             return self?.repo.likePlanet(id: 10) ?? Observable.empty()
         }.subscribe(onNext: { [weak self] (like) in
-            guard let self = self, var planet = self._planet.value else { return }
+            guard let self = self, var planet = self.planetRelay.value else { return }
             // +1 so the value gets updated, since the server is returning value 10
             planet.likes = like.likes! + 1
-            self._planet.accept(planet)
+            self.planetRelay.accept(planet)
             self.hasLiked = true
             }, onError: { [weak self] _ in
                 self?.onError.onNext(ErrorType.likeError)
         }).disposed(by: dispiseBag)
+    }
+}
+
+extension HomeVM {
+    struct Input: InputType {
+        var retry = PublishSubject<Void>()
+        var load = PublishSubject<Void>()
+        var like = PublishSubject<Void>()
+    }
+
+    struct Output: OutputType {
+        typealias Item = CellType
+        var image: Driver<String?>
+        var name: Driver<String>
+        var items: Driver<[SectionModel<String, CellType>]>
     }
 }

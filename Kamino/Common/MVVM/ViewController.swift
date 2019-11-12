@@ -55,7 +55,7 @@ class ViewController<VM: ViewModelProtocol>: UIViewController, ViewControllerTyp
     }
     
     // MARK: - Init
-    required init(with vm: VM = VM()) {
+    required init(with vm: VM) {
         viewModel = vm
         super.init(nibName: nil, bundle: nil)
     }
