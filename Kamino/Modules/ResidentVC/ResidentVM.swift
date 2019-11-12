@@ -12,17 +12,6 @@ import RxDataSources
 import RxCocoa
 
 final class ResidentVM: ViewModel, ViewModelType {
-    struct Input: InputType {
-        var retry = PublishSubject<Void>()
-        var load = PublishSubject<Resident>()
-    }
-    
-    struct Output: OutputType {
-        var image: Driver<String?>
-        var name: Driver<String>
-        var items: Driver<[SectionModel<String, CellType>]>
-    }
-    
     var resident: Resident?
     
     // MARK: - Init
@@ -45,5 +34,18 @@ final class ResidentVM: ViewModel, ViewModelType {
         input.load.map { _ in return true }.bind(to: isLoaded).disposed(by: dispiseBag)
         
         return Output(image: image.asDriver(onErrorJustReturn: nil), name: name.asDriver(onErrorJustReturn: ""), items: sections.asDriver(onErrorJustReturn: []))
+    }
+}
+
+extension ResidentVM {
+    struct Input: InputType {
+        var retry = PublishSubject<Void>()
+        var load = PublishSubject<Resident>()
+    }
+    
+    struct Output: OutputType {
+        var image: Driver<String?>
+        var name: Driver<String>
+        var items: Driver<[SectionModel<String, CellType>]>
     }
 }

@@ -12,17 +12,6 @@ import RxDataSources
 import RxCocoa
 
 final class ResidentsVM: ViewModel, ViewModelType {
-    struct Input: InputType {
-        var retry = PublishSubject<Void>()
-        var load = PublishSubject<Planet>()
-    }
-    
-    struct Output: OutputType {
-        var image: Driver<String?>
-        var name: Driver<String>
-        var items: Driver<[SectionModel<String, Resident>]>
-    }
-    
     private let repo: ResidentsRepositoryProtocol
     private let _residents = BehaviorRelay<[Resident]>(value: [])
     var planet: Planet?
@@ -69,5 +58,18 @@ final class ResidentsVM: ViewModel, ViewModelType {
             self?.bindLoadResident(with: input)
         }).disposed(by: dispiseBag)
 
+    }
+}
+
+extension ResidentsVM {
+    struct Input: InputType {
+        var retry = PublishSubject<Void>()
+        var load = PublishSubject<Planet>()
+    }
+    
+    struct Output: OutputType {
+        var image: Driver<String?>
+        var name: Driver<String>
+        var items: Driver<[SectionModel<String, Resident>]>
     }
 }
